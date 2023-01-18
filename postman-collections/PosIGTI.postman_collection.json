@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "36e7ef78-d573-41bb-8d75-c9f034b47043",
+		"name": "PosIGTI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01-IDS-KeyCloak",
+			"item": [
+				{
+					"name": "01-ConfigGerais",
+					"item": [
+						{
+							"name": "01-getAllOpenIDConnect",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrlIds}}/realms/{{realm}}/.well-known/openid-configuration",
+									"host": [
+										"{{baseUrlIds}}"
+									],
+									"path": [
+										"realms",
+										"{{realm}}",
+										".well-known",
+										"openid-configuration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02-getUserInfo",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.sendRequest({ \r",
+											"    url: pm.environment.get(\"baseUrlIds\") + \"/oauth/v2/token\",\r",
+											"    method: 'POST',\r",
+											"    header: {\r",
+											"        'Accept': 'application/json',\r",
+											"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'urlencoded',\r",
+											"        urlencoded: [\r",
+											"            {key: 'client_id', value: pm.environment.get(\"service-clientes\")},\r",
+											"            {key: 'client_secret', value: pm.environment.get(\"sH9INWHIwM2AKekRGLmn76uF8Nx01noi\")},\r",
+											"            {key: 'grant_type', value: 'client_credentials'}\r",
+											"        ]\r",
+											"    }\r",
+											"},\r",
+											"    (err, res) => {\r",
+											"        pm.globals.set(\"access_token\", res.json().access_token)\r",
+											"        // or use pm.environment.set() instead when you want to store the token in the active environment\r",
+											"        // console.log(res.json());\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "default"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{baseUrlIds}}/realms/{{realm}}/protocol/openid-connect/userinfo",
+									"host": [
+										"{{baseUrlIds}}"
+									],
+									"path": [
+										"realms",
+										"{{realm}}",
+										"protocol",
+										"openid-connect",
+										"userinfo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03-getIntrospectToken",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.sendRequest({ \r",
+											"    url: pm.environment.get(\"baseUrlIds\") + \"/oauth/v2/token\",\r",
+											"    method: 'POST',\r",
+											"    header: {\r",
+											"        'Accept': 'application/json',\r",
+											"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+											"    },\r",
+											"    body: {\r",
+											"        mode: 'urlencoded',\r",
+											"        urlencoded: [\r",
+											"            {key: 'client_id', value: pm.environment.get(\"service-clientes\")},\r",
+											"            {key: 'client_secret', value: pm.environment.get(\"sH9INWHIwM2AKekRGLmn76uF8Nx01noi\")},\r",
+											"            {key: 'grant_type', value: 'client_credentials'}\r",
+											"        ]\r",
+											"    }\r",
+											"},\r",
+											"    (err, res) => {\r",
+											"        pm.globals.set(\"access_token\", res.json().access_token)\r",
+											"        // or use pm.environment.set() instead when you want to store the token in the active environment\r",
+											"        // console.log(res.json());\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "{{access_token}}",
+											"type": "default"
+										},
+										{
+											"key": "client_id",
+											"value": "service-clientes",
+											"type": "default"
+										},
+										{
+											"key": "client_secret",
+											"value": "sH9INWHIwM2AKekRGLmn76uF8Nx01noi",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlIds}}/realms/{{realm}}/protocol/openid-connect/token/introspect",
+									"host": [
+										"{{baseUrlIds}}"
+									],
+									"path": [
+										"realms",
+										"{{realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02-ClientCredentialsFlow",
+					"item": [
+						{
+							"name": "getToken-clientCredentials",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);\r",
+											"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "service-clientes",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "sH9INWHIwM2AKekRGLmn76uF8Nx01noi",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "senha123",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrlIds}}/realms/{{realm}}/protocol/openid-connect/token",
+									"host": [
+										"{{baseUrlIds}}"
+									],
+									"path": [
+										"realms",
+										"{{realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
