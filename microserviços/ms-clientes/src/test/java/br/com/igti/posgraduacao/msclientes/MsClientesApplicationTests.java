@@ -1,10 +1,10 @@
-package br.com.carlosroberto.posigti.clientes;
+package br.com.igti.posgraduacao.msclientes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ClientesApplicationTests {
+class MsClientesApplicationTests {
 
 	@Test
 	void contextLoads() {

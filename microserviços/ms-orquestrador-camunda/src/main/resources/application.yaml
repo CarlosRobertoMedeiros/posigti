@@ -1,0 +1,16 @@
+server:
+  port: 8071
+  servlet:
+    context-path: /orquestrador-camunda
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5437/camunda
+    username: dbcamundaadmin
+    password: dbcamundapassword
+
+camunda:
+  bpm:
+    admin-user:
+      id: demo
+      password: demo

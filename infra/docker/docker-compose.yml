@@ -47,10 +47,48 @@ services:
         condition: service_healthy
     networks:
       - stack1-network
+      
+  #Camunda Database
+  postgres-db-camunda:
+    container_name: postgres-db-camunda
+    image: postgres:${KC_DB_POSTGRES_VERSION}
+    command: postgres -c 'max_connections=200'
+    volumes:
+      - ./db/pgdata-db-camunda:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${CAMUNDA_DB_POSTGRES_DB}
+      POSTGRES_USER: ${CAMUNDA_DB_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${CAMUNDA_DB_POSTGRES_PASSWORD}
+      DATABASE_HOST: ${CAMUNDA_DB_DATABASE_HOST}
+    healthcheck:    
+      test: "exit 0"
+    ports:
+      - "5437:5432"  
+    networks:
+      - stack1-network
+      
+  #Ms-clientes Database
+  mongo-db-clientes:
+    container_name: mongo-db-clientes
+    image: mongo:${CLIENTES_DB_MONGO_VERSION}
+    restart: always
+    volumes:
+      - ./db/clientes-mongo-volume:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ${CLIENTES_DB_MONGO_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${CLIENTES_DB_MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${CLIENTES_DB_MONGO_ROOT_PASSWORD}
+    ports:
+      - "27017:27017"  
+    networks:
+      - stack1-network
   
     
 volumes:
   pgdata-keycloak-authorization-server:
+  pgdata-db-camunda:
+  clientes-mongo-volume:
+  
 
 networks:
   stack1-network:
