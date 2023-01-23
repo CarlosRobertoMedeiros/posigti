@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0b47had" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_1s0f50h">
+    <bpmn:participant id="Participant_1fgk1op" name="Incluir prospecto na lista negra de fraude" processRef="Process_10uiwkw" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_10uiwkw" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Atualização iniciada">
+      <bpmn:outgoing>Flow_0jgh1ex</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_1b5ppsk" name="Incluir prospecto na lista negra de fraude">
+      <bpmn:incoming>Flow_0jgh1ex</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gewobk</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1qgt6gd" name="Verificar prospecto na lista negra">
+      <bpmn:incoming>Flow_0gewobk</bpmn:incoming>
+      <bpmn:outgoing>Flow_1hzhxql</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:intermediateThrowEvent id="Event_0w6ea7g" name="Atualização finalizada">
+      <bpmn:incoming>Flow_1hzhxql</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_0jgh1ex" sourceRef="StartEvent_1" targetRef="Activity_1b5ppsk" />
+    <bpmn:sequenceFlow id="Flow_0gewobk" sourceRef="Activity_1b5ppsk" targetRef="Activity_1qgt6gd" />
+    <bpmn:sequenceFlow id="Flow_1hzhxql" sourceRef="Activity_1qgt6gd" targetRef="Event_0w6ea7g" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1s0f50h">
+      <bpmndi:BPMNShape id="Participant_1fgk1op_di" bpmnElement="Participant_1fgk1op" isHorizontal="true">
+        <dc:Bounds x="129" y="79" width="689" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="182" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="172" y="205" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1i041ya_di" bpmnElement="Activity_1b5ppsk" bioc:stroke="#8e24aa" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#8e24aa">
+        <dc:Bounds x="300" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14cq4tv_di" bpmnElement="Activity_1qgt6gd" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="490" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0w6ea7g_di" bpmnElement="Event_0w6ea7g" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="682" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="672" y="205" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0jgh1ex_di" bpmnElement="Flow_0jgh1ex">
+        <di:waypoint x="218" y="180" />
+        <di:waypoint x="300" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gewobk_di" bpmnElement="Flow_0gewobk">
+        <di:waypoint x="400" y="180" />
+        <di:waypoint x="490" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hzhxql_di" bpmnElement="Flow_1hzhxql">
+        <di:waypoint x="590" y="180" />
+        <di:waypoint x="682" y="180" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

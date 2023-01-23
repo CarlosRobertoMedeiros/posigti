@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_171k138" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0">
+  <bpmn:collaboration id="Collaboration_1a3izvx">
+    <bpmn:participant id="Participant_1syhz2f" name="Cadastrar e Confirmar onboarding de cliente" processRef="Process_0bpz5ur" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0bpz5ur" isExecutable="true">
+    <bpmn:sequenceFlow id="Flow_0j3tw36" sourceRef="Activity_1r0dobe" targetRef="Activity_1bs0i1s" />
+    <bpmn:sequenceFlow id="Flow_0ndz0qb" sourceRef="Activity_1bs0i1s" targetRef="Event_0rtgi1i" />
+    <bpmn:sequenceFlow id="Flow_1mje49w" sourceRef="StartEvent_1" targetRef="Activity_09ssx49" />
+    <bpmn:startEvent id="StartEvent_1" name="Confirmacao de onboarding solicitada">
+      <bpmn:outgoing>Flow_1mje49w</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:intermediateThrowEvent id="Event_0rtgi1i" name="Confirmacao de onboarding finalizada">
+      <bpmn:incoming>Flow_0ndz0qb</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sendTask id="Activity_1r0dobe" name="Notificar cliente com os dados">
+      <bpmn:incoming>Flow_1mwcixl</bpmn:incoming>
+      <bpmn:outgoing>Flow_0j3tw36</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="Activity_1bs0i1s" name="Verificar valores aprovação">
+      <bpmn:incoming>Flow_0j3tw36</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ndz0qb</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1mwcixl" sourceRef="Activity_09ssx49" targetRef="Activity_1r0dobe" />
+    <bpmn:serviceTask id="Activity_09ssx49" name="Cadastrar e gerar informações de cliente">
+      <bpmn:incoming>Flow_1mje49w</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mwcixl</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1a3izvx">
+      <bpmndi:BPMNShape id="Participant_1syhz2f_di" bpmnElement="Participant_1syhz2f" isHorizontal="true">
+        <dc:Bounds x="129" y="120" width="739" height="260" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="182" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="161" y="172" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0rtgi1i_di" bpmnElement="Event_0rtgi1i" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="762" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="741" y="265" width="78" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_017mu5e_di" bpmnElement="Activity_1r0dobe" bioc:stroke="#8e24aa" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#8e24aa">
+        <dc:Bounds x="450" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xd4pg1_di" bpmnElement="Activity_1bs0i1s" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="610" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1a7defx_di" bpmnElement="Activity_09ssx49" bioc:stroke="#8e24aa" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#8e24aa">
+        <dc:Bounds x="270" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0j3tw36_di" bpmnElement="Flow_0j3tw36">
+        <di:waypoint x="550" y="240" />
+        <di:waypoint x="610" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ndz0qb_di" bpmnElement="Flow_0ndz0qb">
+        <di:waypoint x="710" y="240" />
+        <di:waypoint x="762" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mje49w_di" bpmnElement="Flow_1mje49w">
+        <di:waypoint x="218" y="240" />
+        <di:waypoint x="270" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mwcixl_di" bpmnElement="Flow_1mwcixl">
+        <di:waypoint x="370" y="240" />
+        <di:waypoint x="450" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
