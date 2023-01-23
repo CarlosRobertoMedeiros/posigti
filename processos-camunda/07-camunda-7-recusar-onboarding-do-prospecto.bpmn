@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ytnk2g" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_05vigrj">
+    <bpmn:participant id="Participant_05hwp0n" name="Recusar onboarding de prospecto" processRef="Process_1glet58" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1glet58" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Recusa de onboarding solicitada">
+      <bpmn:outgoing>Flow_1d18zig</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1d18zig" sourceRef="StartEvent_1" targetRef="Activity_1solv4o" />
+    <bpmn:sequenceFlow id="Flow_1gc5yf8" sourceRef="Activity_1solv4o" targetRef="Activity_1xb1e00" />
+    <bpmn:intermediateThrowEvent id="Event_01rvyrf" name="Recusa de onboarding finalizada">
+      <bpmn:incoming>Flow_1lo5tye</bpmn:incoming>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_1lo5tye" sourceRef="Activity_1xb1e00" targetRef="Event_01rvyrf" />
+    <bpmn:sendTask id="Activity_1solv4o" name="Notificar onboarding rejeitado">
+      <bpmn:incoming>Flow_1d18zig</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gc5yf8</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="Activity_1xb1e00" name="Verficar valores de rejeição">
+      <bpmn:incoming>Flow_1gc5yf8</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lo5tye</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_05vigrj">
+      <bpmndi:BPMNShape id="Participant_05hwp0n_di" bpmnElement="Participant_05hwp0n" isHorizontal="true">
+        <dc:Bounds x="129" y="110" width="600" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="179" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="169" y="255" width="56" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_01rvyrf_di" bpmnElement="Event_01rvyrf" bioc:stroke="#831311" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#831311">
+        <dc:Bounds x="592" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="582" y="255" width="56" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1v3qlrw_di" bpmnElement="Activity_1solv4o" bioc:stroke="#5b176d" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#5b176d">
+        <dc:Bounds x="270" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1evz7pi_di" bpmnElement="Activity_1xb1e00" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="430" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1d18zig_di" bpmnElement="Flow_1d18zig">
+        <di:waypoint x="215" y="230" />
+        <di:waypoint x="270" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gc5yf8_di" bpmnElement="Flow_1gc5yf8">
+        <di:waypoint x="370" y="230" />
+        <di:waypoint x="430" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lo5tye_di" bpmnElement="Flow_1lo5tye">
+        <di:waypoint x="530" y="230" />
+        <di:waypoint x="592" y="230" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
