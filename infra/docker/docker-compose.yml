@@ -51,7 +51,7 @@ services:
   #Camunda Database
   postgres-db-camunda:
     container_name: postgres-db-camunda
-    image: postgres:${KC_DB_POSTGRES_VERSION}
+    image: postgres:${CAMUNDA_DB_POSTGRES_VERSION}
     command: postgres -c 'max_connections=200'
     volumes:
       - ./db/pgdata-db-camunda:/var/lib/postgresql/data

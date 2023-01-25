@@ -1,0 +1,46 @@
+validação de fraude
+  validarEmail
+  validarTelefone
+
+prospecto
+{
+  "cpf":"11111111111",
+  "nome":"Carlos Roberto Medeiros de Lima",
+  "endereco":"QSC 19 Chácara 27 Conj F Casa 07A",
+  "telefone":"61984731630",
+  "email":"carlosmedeiroslima@gmail.com"
+  "cep":"72017338",
+  "renda":"1000.00",
+  "cartaoDebito":"100.00",
+  "emprestimo":"50.00"
+}
+
+
+cliente
+{
+  "conta":"conta criada"
+  "cpf":"11111111111",
+  "nome":"Carlos Roberto Medeiros de Lima",
+  "endereco":"QSC 19 Chácara 27 Conj F Casa 07A",
+  "telefone":"61984731630",
+  "cep":"72017338",
+  "renda":"1000.00",
+  "cartaoDebito":"100.00",
+  "emprestimo":"50.00"
+}
+
+fraude (tbl_restricao)
+{
+  "cpf":"11111111111",
+  "telefone":"61984731630",
+  "email":"carlosmedeiroslima@gmail.com"
+  "dt_Inclusao":"yyyy-mm-dd"
+}
+
+fraude (tbl_cadastro_positivo)
+{
+  "cpf":"11111111111",
+  "telefone":"61984731630",
+  "email":"carlosmedeiroslima@gmail.com"
+  "dt_Inclusao":"yyyy-mm-dd"
+}

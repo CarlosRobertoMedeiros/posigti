@@ -1,0 +1,59 @@
+{
+  "components": [
+    {
+      "text": "# Formulário de Análise de Documentos\n",
+      "type": "text",
+      "id": "Field_13r4omc"
+    },
+    {
+      "values": [
+        {
+          "label": "Sim",
+          "value": "Sim"
+        },
+        {
+          "label": "Não",
+          "value": "Nao"
+        }
+      ],
+      "label": "A documentação foi entregue?",
+      "type": "radio",
+      "id": "Field_047eu6c",
+      "key": "rd_documentacaoEntregue",
+      "defaultValue": "Sim"
+    },
+    {
+      "values": [
+        {
+          "label": "Sim",
+          "value": "Sim"
+        },
+        {
+          "label": "Não",
+          "value": "Nao"
+        }
+      ],
+      "label": "A documentação foi aprovada ?",
+      "type": "radio",
+      "id": "Field_1kvzvlm",
+      "key": "rd_documentacaoAprovada",
+      "defaultValue": "Sim"
+    },
+    {
+      "action": "submit",
+      "label": "Prosseguir",
+      "type": "button",
+      "id": "Field_0x495eu",
+      "key": "field_15tb9gz"
+    }
+  ],
+  "type": "default",
+  "id": "frm_analise_documentos",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.7.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 6
+}

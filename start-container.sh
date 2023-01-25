@@ -6,4 +6,4 @@
 docker-compose -f C:/Desenvolvimento/sistemas/study-pos-igti/infra/docker/docker-compose.yml down
 docker-compose -f C:/Desenvolvimento/sistemas/study-pos-igti/infra/docker/docker-compose.yml up -d
 
-echo 'Keycloak started !'
+echo 'Stack started !'
