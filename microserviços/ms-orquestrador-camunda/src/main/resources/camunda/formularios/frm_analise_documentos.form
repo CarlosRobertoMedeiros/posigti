@@ -20,7 +20,10 @@
       "type": "radio",
       "id": "Field_047eu6c",
       "key": "rd_documentacaoEntregue",
-      "defaultValue": "Sim"
+      "defaultValue": "Sim",
+      "validate": {
+        "required": true
+      }
     },
     {
       "values": [
@@ -37,7 +40,10 @@
       "type": "radio",
       "id": "Field_1kvzvlm",
       "key": "rd_documentacaoAprovada",
-      "defaultValue": "Sim"
+      "defaultValue": "Sim",
+      "validate": {
+        "required": true
+      }
     },
     {
       "action": "submit",
