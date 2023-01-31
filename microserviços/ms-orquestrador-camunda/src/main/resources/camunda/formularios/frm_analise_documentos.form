@@ -9,11 +9,11 @@
       "values": [
         {
           "label": "Sim",
-          "value": "Sim"
+          "value": "true"
         },
         {
           "label": "Não",
-          "value": "Nao"
+          "value": "false"
         }
       ],
       "label": "A documentação foi entregue?",
@@ -29,11 +29,11 @@
       "values": [
         {
           "label": "Sim",
-          "value": "Sim"
+          "value": "true"
         },
         {
           "label": "Não",
-          "value": "Nao"
+          "value": "false"
         }
       ],
       "label": "A documentação foi aprovada ?",
