@@ -9,3 +9,14 @@ spring:
       host: 127.0.0.1
       port: 27017
       database: db_clientes
+
+# custom path for swagger-ui
+springdoc:
+  swagger-ui:
+    path: /swaggerui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+
+# custom path for api docs
+  api-docs:
+    path: /api-docs
