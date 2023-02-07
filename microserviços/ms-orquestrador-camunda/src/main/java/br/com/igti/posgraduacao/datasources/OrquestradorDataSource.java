@@ -40,7 +40,7 @@ public class OrquestradorDataSource implements OrquestradorRepository {
             variables.putValue(ID_IDEMPOTENTE, IdempotentIdGenerated);
             variables.putValue(JSON_REQUSICAO_ABERTURA_CONTA,  Variables.objectValue(jsonReqAberturaConta));
 
-            instance = EngineUtil.getInstance().getRuntimeEngine().createProcessInstanceByKey(EPPLUS_PROCESS_NAME)
+            instance = EngineUtil.getInstance().getRuntimeEngine().createProcessInstanceByKey(ABERTURA_DE_CONTA_PROCESS_NAME)
                     .businessKey(IdempotentIdGenerated)
                     .setVariables(variables)
                     .executeWithVariablesInReturn();

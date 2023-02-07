@@ -13,7 +13,7 @@ import org.camunda.bpm.engine.runtime.VariableInstance;
 
 import java.util.List;
 
-import static br.com.igti.posgraduacao.config.util.ProcessVariables.EPPLUS_PROCESS_NAME;
+import static br.com.igti.posgraduacao.config.util.ProcessVariables.ABERTURA_DE_CONTA_PROCESS_NAME;
 
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -80,7 +80,7 @@ public final class EngineUtil {
     }
 
     public Object getVariableObject(String processId, String varName) {
-        return EngineUtil.getInstance().getRuntimeEngine().getVariable(processId, EPPLUS_PROCESS_NAME);
+        return EngineUtil.getInstance().getRuntimeEngine().getVariable(processId, ABERTURA_DE_CONTA_PROCESS_NAME);
     }
 
     public ExternalTask getExternalTaskByBusinessKey(String businessKey, String processName) {
