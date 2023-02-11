@@ -1,0 +1,19 @@
+server:
+  port: 8031
+  servlet:
+    context-path: /service-fraude
+
+spring:
+  profiles:
+    default: local
+    active: local
+
+  #habilitando o banner.txt com cores
+  output:
+    ansi:
+      enabled: always
+  main:
+    banner-mode: console
+  banner:
+    location: classpath:banner.txt
+

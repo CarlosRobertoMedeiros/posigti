@@ -1,14 +1,14 @@
 server:
-  port: 8041
+  port: 8021
   servlet:
-    context-path: /service-clientes
+    context-path: /service-prospecto
 
 spring:
   data:
     mongodb:
       host: 127.0.0.1
       port: 27017
-      database: db_clientes
+      database: db_prospecto
 
 # custom path for swagger-ui
 springdoc:
@@ -17,6 +17,7 @@ springdoc:
     operationsSorter: alpha
     tagsSorter: alpha
 
-# custom path for api docs
+  # custom path for api docs
   api-docs:
     path: /api-docs
+

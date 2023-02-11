@@ -16,6 +16,8 @@
 	<modules>
 		<module>../ms-orquestrador-camunda</module>
 		<module>../ms-clientes</module>
+		<module>../ms-fraude</module>
+		<module>../ms-prospecto</module>
 	</modules>
 
 
