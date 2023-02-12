@@ -1,8 +1,9 @@
-validação de fraude
+validação de fraude   -- OK
   validarEmail
   validarTelefone
+  validarCep 
 
-prospecto
+prospecto  -- fazer amanhã no fraude
 {
   "cpf":"11111111111",
   "nome":"Carlos Roberto Medeiros de Lima",
@@ -44,3 +45,7 @@ fraude (tbl_cadastro_positivo)
   "email":"carlosmedeiroslima@gmail.com"
   "dt_Inclusao":"yyyy-mm-dd"
 }
+
+
+ms-mensagens ---para enviar email
+enviodeMensagens(Enviar email )

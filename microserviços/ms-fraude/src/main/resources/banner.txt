@@ -6,7 +6,4 @@ ${AnsiColor.GREEN}| |  | \__ \${AnsiColor.RED}|  _|| | | (_| | |_| | (_| |  __/
 ${AnsiColor.GREEN}|_|  |_|___/${AnsiColor.RED}|_|  |_|  \__,_|\__,_|\__,_|\___|
 ${AnsiColor.GREEN}            ${AnsiColor.RED}
 ${AnsiColor.DEFAULT}
-GroupId: ${app.groupId}
-ArtifactId: ${app.name}
-App Version: ${app.version}
 Spring Boot Version:  ${spring-boot.version}
