@@ -1,17 +1,18 @@
 package br.com.igti.posgraduacao.mscadastronegativo.transportlayer.output;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Builder
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NegativadoOutput {
-    private UUID id;
+    private String id;
     private String cpf;
     private String nome;
     private String telefone;

@@ -12,11 +12,11 @@ import java.util.UUID;
 @Getter
 @Builder
 @AllArgsConstructor
-@Document
+@Document(collection = "negativado")
 public class Negativado {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    private String id; //= UUID.randomUUID();
     private String cpf;
     private String nome;
     private String telefone;

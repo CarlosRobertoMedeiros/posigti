@@ -1,7 +1,7 @@
 package br.com.igti.posgraduacao.mscadastronegativo.interactors;
 
-import br.com.igti.posgraduacao.mscadastronegativo.transportlayer.input.NegativadoInput;
-import br.com.igti.posgraduacao.mscadastronegativo.transportlayer.output.NegativadoOutput;
+import br.com.igti.posgraduacao.mscadastronegativo.entities.Negativado;
+import br.com.igti.posgraduacao.mscadastronegativo.repositories.CadastroNegativadoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,17 +9,23 @@ import java.util.List;
 @Service
 public class CadastroNegativoUseCase {
 
-    public List<NegativadoOutput> getAll() {
-        return null;
+    private final CadastroNegativadoRepository cadastroNegativadoRepository;
+
+    public CadastroNegativoUseCase(CadastroNegativadoRepository cadastroNegativadoRepository) {
+        this.cadastroNegativadoRepository = cadastroNegativadoRepository;
+    }
+
+    public List<Negativado> getAll() {
+        return this.cadastroNegativadoRepository.getAll();
     }
 
 
-    public NegativadoOutput getByCpf(String cpf) {
-        return null;
+    public Negativado getByCpf(String cpf) {
+        return this.cadastroNegativadoRepository.getByCpf(cpf);
     }
 
-    public NegativadoOutput post(NegativadoInput negativadoInput) {
-        return null;
+    public Negativado post(Negativado negativado) {
+        return this.cadastroNegativadoRepository.post(negativado);
     }
 
 
