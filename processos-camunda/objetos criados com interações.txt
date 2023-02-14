@@ -3,7 +3,8 @@ validação de fraude   -- OK
   validarTelefone
   validarCep 
 
-prospecto  -- fazer amanhã no fraude
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+prospecto  -- Não precisa
 {
   "cpf":"11111111111",
   "nome":"Carlos Roberto Medeiros de Lima",
@@ -15,7 +16,25 @@ prospecto  -- fazer amanhã no fraude
   "cartaoDebito":"100.00",
   "emprestimo":"50.00"
 }
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+
+
+cadastro-negativo (tbl_restricao)
+{
+  "cpf":"11111111111",
+  "telefone":"61984731630",
+  "email":"carlosmedeiroslima@gmail.com"
+  "dt_Inclusao":"yyyy-mm-dd"
+}
+
+cadastro-positivo(tbl_cadastro_positivo)
+{
+  "cpf":"11111111111",
+  "telefone":"61984731630",
+  "email":"carlosmedeiroslima@gmail.com"
+  "dt_Inclusao":"yyyy-mm-dd"
+}
 
 cliente
 {
@@ -30,21 +49,8 @@ cliente
   "emprestimo":"50.00"
 }
 
-fraude (tbl_restricao)
-{
-  "cpf":"11111111111",
-  "telefone":"61984731630",
-  "email":"carlosmedeiroslima@gmail.com"
-  "dt_Inclusao":"yyyy-mm-dd"
-}
+hub-comunicacao(Enviar email )
 
-fraude (tbl_cadastro_positivo)
-{
-  "cpf":"11111111111",
-  "telefone":"61984731630",
-  "email":"carlosmedeiroslima@gmail.com"
-  "dt_Inclusao":"yyyy-mm-dd"
-}
 
 
 ms-mensagens ---para enviar email

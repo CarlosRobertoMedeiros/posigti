@@ -1,0 +1,24 @@
+spring:
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      database: db_cadastro_positivo
+
+app:
+  groupId: '@project.groupId@'
+  name: '@project.artifactId@'
+  version: '@project.version@'
+
+
+# custom path for swagger-ui
+springdoc:
+  swagger-ui:
+    path: /swaggerui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+
+  # custom path for api docs
+  api-docs:
+    path: /api-docs
+

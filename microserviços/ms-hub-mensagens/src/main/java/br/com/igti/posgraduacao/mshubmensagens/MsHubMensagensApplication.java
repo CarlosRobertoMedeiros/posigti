@@ -1,4 +1,4 @@
-package br.com.igti.posgraduacao.msclientes;
+package br.com.igti.posgraduacao.mshubmensagens;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,15 +14,15 @@ import java.net.UnknownHostException;
 import java.util.Optional;
 
 @SpringBootApplication
-public class MsClientesApplication {
+public class MsHubMensagensApplication {
 
 	private BuildProperties buildProperties;
 	private static BuildProperties buildPropertiesStatic;
 
-	private static final Logger log = LoggerFactory.getLogger(MsClientesApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(MsHubMensagensApplication.class);
 	private final Environment env;
 
-	public MsClientesApplication(BuildProperties buildProperties, Environment env) {
+	public MsHubMensagensApplication(BuildProperties buildProperties, Environment env) {
 		this.buildProperties = buildProperties;
 		this.env = env;
 	}
@@ -33,11 +33,11 @@ public class MsClientesApplication {
 
 	@PostConstruct
 	public void init(){
-		MsClientesApplication.buildPropertiesStatic = this.buildProperties;
+		MsHubMensagensApplication.buildPropertiesStatic = this.buildProperties;
 	}
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(MsClientesApplication.class);
+		SpringApplication app = new SpringApplication(MsHubMensagensApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		logAppOnStartup(env);
 	}
@@ -83,5 +83,7 @@ public class MsClientesApplication {
 				env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles()
 		);
 	}
+
+
 
 }

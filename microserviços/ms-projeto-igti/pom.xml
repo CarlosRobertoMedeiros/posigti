@@ -15,9 +15,11 @@
 	</properties>
 	<modules>
 		<module>../ms-orquestrador-camunda</module>
+		<module>../ms-cadastro-negativo</module>
+		<module>../ms-cadastro-positivo</module>
 		<module>../ms-clientes</module>
 		<module>../ms-fraude</module>
-		<module>../ms-prospecto</module>
+		<module>../ms-hub-mensagens</module>
 	</modules>
 
 

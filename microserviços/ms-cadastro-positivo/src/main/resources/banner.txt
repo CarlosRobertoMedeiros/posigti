@@ -1,0 +1,9 @@
+${AnsiColor.DEFAULT}
+${AnsiColor.GREEN}	__  __     ${AnsiColor.RED}  ____          _   ____           _ _   _
+${AnsiColor.GREEN} |  \/  |___ ${AnsiColor.RED} / ___|__ _  __| | |  _ \ ___  ___(_) |_(_)_   _____
+${AnsiColor.GREEN} | |\/| / __|${AnsiColor.RED}| |   / _` |/ _` | | |_) / _ \/ __| | __| \ \ / / _ \
+${AnsiColor.GREEN} | |  | \__ \${AnsiColor.RED}| |__| (_| | (_| | |  __/ (_) \__ \ | |_| |\ V / (_) |
+${AnsiColor.GREEN} |_|  |_|___/${AnsiColor.RED} \____\__,_|\__,_| |_|   \___/|___/_|\__|_| \_/ \___/
+${AnsiColor.GREEN}  		   ${AnsiColor.RED}
+${AnsiColor.DEFAULT}
+Spring Boot Version:  ${spring-boot.version}

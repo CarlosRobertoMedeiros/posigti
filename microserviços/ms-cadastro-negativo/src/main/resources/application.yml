@@ -1,7 +1,7 @@
 server:
-  port: 8041
+  port: 8031
   servlet:
-    context-path: /service-cliente
+    context-path: /service-cadastro-negativo
 
 spring:
   profiles:
@@ -16,3 +16,4 @@ spring:
     banner-mode: console
   banner:
     location: classpath:banner.txt
+

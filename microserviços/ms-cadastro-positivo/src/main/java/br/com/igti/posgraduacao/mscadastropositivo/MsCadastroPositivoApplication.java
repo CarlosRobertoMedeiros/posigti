@@ -1,4 +1,4 @@
-package br.com.igti.posgraduacao.msclientes;
+package br.com.igti.posgraduacao.mscadastropositivo;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,15 +14,15 @@ import java.net.UnknownHostException;
 import java.util.Optional;
 
 @SpringBootApplication
-public class MsClientesApplication {
+public class MsCadastroPositivoApplication {
 
 	private BuildProperties buildProperties;
 	private static BuildProperties buildPropertiesStatic;
 
-	private static final Logger log = LoggerFactory.getLogger(MsClientesApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(MsCadastroPositivoApplication.class);
 	private final Environment env;
 
-	public MsClientesApplication(BuildProperties buildProperties, Environment env) {
+	public MsCadastroPositivoApplication(BuildProperties buildProperties, Environment env) {
 		this.buildProperties = buildProperties;
 		this.env = env;
 	}
@@ -33,11 +33,12 @@ public class MsClientesApplication {
 
 	@PostConstruct
 	public void init(){
-		MsClientesApplication.buildPropertiesStatic = this.buildProperties;
+		MsCadastroPositivoApplication.buildPropertiesStatic = this.buildProperties;
 	}
 
 	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(MsClientesApplication.class);
+
+		SpringApplication app = new SpringApplication(MsCadastroPositivoApplication.class);
 		Environment env = app.run(args).getEnvironment();
 		logAppOnStartup(env);
 	}
