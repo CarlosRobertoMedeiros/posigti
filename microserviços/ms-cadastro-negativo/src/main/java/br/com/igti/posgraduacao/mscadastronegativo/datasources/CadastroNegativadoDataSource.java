@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CadastroNegativadoDataSource implements CadastroNegativadoRepository {
@@ -24,13 +25,33 @@ public class CadastroNegativadoDataSource implements CadastroNegativadoRepositor
         return this.mongoClienteRepository.findAll();
     }
 
+
     @Override
-    public Negativado getByCpf(String cpf) {
+    public Negativado getNegativadoById(String id) {
+        Optional<Negativado> negativadoOptional =  mongoClienteRepository.findById(id);
+        if (negativadoOptional.isEmpty()){
+          new RuntimeException("Negativado Não Encontrado !");
+        }
+        return negativadoOptional.get();
+    }
+
+    @Override
+    public Negativado getNegativadoByCpf(String cpf) {
         return mongoClienteRepository.consultarPorCpf(cpf);
     }
 
     @Override
-    public Negativado post(Negativado negativado) {
+    public Negativado inserirNegativado(Negativado negativado) {
         return this.mongoClienteRepository.save(negativado);
+    }
+
+    @Override
+    public Negativado atualizarNegativado(Negativado negativado) {
+        return this.mongoClienteRepository.save(negativado);
+    }
+
+    @Override
+    public void excluirNegativado(String id) {
+        this.mongoClienteRepository.deleteById(id);
     }
 }

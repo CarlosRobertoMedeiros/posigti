@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NegativadoInput {

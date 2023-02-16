@@ -27,7 +27,18 @@ cadastro-negativo (tbl_restricao)
   "telefone":"61984731630",
   "email":"carlosmedeiroslima@gmail.com"
   "dt_Inclusao":"yyyy-mm-dd"
+
+//Chamada
+{
+  "cpf": "88813886187",
+  "nome": "Carlos Roberto",
+  "telefone": "(61)98473-1630",
+  "email": "carlosmedeiroslima1981@gmail.com"
 }
+
+}
+
+
 
 cadastro-positivo(tbl_cadastro_positivo)
 {

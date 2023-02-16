@@ -7,6 +7,9 @@ import java.util.List;
 public interface CadastroNegativadoRepository {
 
     List<Negativado> getAll();
-    Negativado getByCpf(String cpf);
-    Negativado post(Negativado negativado);
+    Negativado getNegativadoById(String id);
+    Negativado getNegativadoByCpf(String cpf);
+    Negativado inserirNegativado(Negativado negativado);
+    Negativado atualizarNegativado(Negativado negativado);
+    void excluirNegativado(String id);
 }
