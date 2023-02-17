@@ -39,7 +39,7 @@ public interface CadastroNegativoController {
     @GetMapping(value = "/negativados/", produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<List<NegativadoOutput>> getAllNegativados();
 
-    @Operation(summary = "Obter cadastro negativado pelo seu cpf")
+    @Operation(summary = "Obter cadastro negativado pelo seu id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Negativados encontrados",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,

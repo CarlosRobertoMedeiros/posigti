@@ -28,7 +28,7 @@ public class CadastroNegativadoDataSource implements CadastroNegativadoRepositor
 
     @Override
     public Negativado getNegativadoById(String id) {
-        Optional<Negativado> negativadoOptional =  mongoClienteRepository.findById(id);
+        Optional<Negativado> negativadoOptional =  this.mongoClienteRepository.findById(id);
         if (negativadoOptional.isEmpty()){
           new RuntimeException("Negativado Não Encontrado !");
         }
@@ -37,7 +37,7 @@ public class CadastroNegativadoDataSource implements CadastroNegativadoRepositor
 
     @Override
     public Negativado getNegativadoByCpf(String cpf) {
-        return mongoClienteRepository.consultarPorCpf(cpf);
+        return this.mongoClienteRepository.consultarPorCpf(cpf);
     }
 
     @Override
