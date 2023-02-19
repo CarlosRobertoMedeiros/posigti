@@ -1,3 +1,10 @@
+    username: carlosmedeiroslimaposigti@gmail.com
+    password: posigti@123
+
+Senha do sendGrid: A=Cz!LTn&W6@n&2N
+
+Senha do sendGrid: cumPDF][fLkKq37F
+
 validação de fraude   -- OK
   validarEmail
   validarTelefone
@@ -51,9 +58,9 @@ cadastro-positivo(tbl_cadastro_positivo) -- OK
 
 cliente 
 {
-  "conta":"conta criada"
-  "cpf":"11111111111",
-  "nome":"Carlos Roberto Medeiros de Lima",
+ "cpf":"11111111111", 
+ "conta":"conta criada"
+   "nome":"Carlos Roberto Medeiros de Lima",
   "endereco":"QSC 19 Chácara 27 Conj F Casa 07A",
   "telefone":"61984731630",
   "cep":"72017338",
@@ -68,3 +75,40 @@ hub-comunicacao(Enviar email )
 
 ms-mensagens ---para enviar email
 enviodeMensagens(Enviar email )
+
+
+
+    private String id;
+    private String cpf;
+    private String banco = "001";
+    private String conta = UUID.randomUUID().toString();
+    private String nome;
+    private String endereco;
+    private String telefone;
+    private String cep;
+    private Double renda;
+    private Double cartaoDebito;
+    private Double emprestimo;
+    private String email;
+    private LocalDateTime dataInclusao = LocalDateTime.now();
+
+
+
+
+
+
+List<Cliente> getAll();
+    Cliente getClienteById(String id);
+    Cliente getClienteByCpf(String cpf);
+    Cliente inserirCliente(Cliente cliente);
+    Cliente atualizarCliente(Cliente cliente);
+    void excluirCliente(String id);
+
+
+posigti@123
+
+{
+  "emailTo": "carlosmedeiroslima@gmail.com",
+  "titulo": "BEM VINDO AO BANCO ABC",
+  "conteudo": "Caros Amigo ... Carlos Roberto é com grande satisfação que te recebemos como cliente do banco. Sua agência é: 001 e sua conta XPTO"
+}

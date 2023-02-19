@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "Col_Email_Enviado")
-public class Email {
+public class EmailHub {
     @Id
     private String id;
     private String emailTo;

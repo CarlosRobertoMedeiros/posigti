@@ -1,8 +1,8 @@
 package br.com.igti.posgraduacao.mshubmensagens.transportlayer.mappers;
 
-import br.com.igti.posgraduacao.mshubmensagens.entities.Email;
-import br.com.igti.posgraduacao.mshubmensagens.transportlayer.input.EmailInput;
-import br.com.igti.posgraduacao.mshubmensagens.transportlayer.output.EmailOutput;
+import br.com.igti.posgraduacao.mshubmensagens.entities.EmailHub;
+import br.com.igti.posgraduacao.mshubmensagens.transportlayer.input.EmailHubInput;
+import br.com.igti.posgraduacao.mshubmensagens.transportlayer.output.EmailHubOutput;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -13,15 +13,15 @@ import java.util.List;
 public interface EmailMapper {
     EmailMapper INSTANCE = Mappers.getMapper(EmailMapper.class);
 
-    Email map(EmailInput emailInput);
+    EmailHub map(EmailHubInput emailHubInput);
 
-    EmailOutput mapOutput(Email email);
+    EmailHubOutput mapOutput(EmailHub emailHub);
 
-    default List<EmailOutput> mapListOutput(List<Email> emails){
-        final List<EmailOutput> emailOutputList = new ArrayList<>();
-        for (Email email: emails) {
-            EmailOutput emailOutput = EmailMapper.INSTANCE.mapOutput(email);
-            emailOutputList.add(emailOutput);
+    default List<EmailHubOutput> mapListOutput(List<EmailHub> emails){
+        final List<EmailHubOutput> emailOutputList = new ArrayList<>();
+        for (EmailHub emailHub: emails) {
+            EmailHubOutput emailHubOutput = EmailMapper.INSTANCE.mapOutput(emailHub);
+            emailOutputList.add(emailHubOutput);
         }
         return emailOutputList;
     }

@@ -34,3 +34,6 @@ build/
 
 ### DataBase ###
 /infra/docker/db
+
+### Configuracoes do SendGrid para Enviar email ###
+/infra/docker/sendgrid.env

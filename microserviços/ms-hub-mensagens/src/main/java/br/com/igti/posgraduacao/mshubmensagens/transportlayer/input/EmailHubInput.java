@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EmailInput {
+public class EmailHubInput {
     private String emailTo;
     private String titulo;
     private String conteudo;

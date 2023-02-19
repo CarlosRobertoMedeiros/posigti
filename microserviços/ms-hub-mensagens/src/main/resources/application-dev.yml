@@ -3,24 +3,29 @@ spring:
     mongodb:
       host: 127.0.0.1
       port: 27017
-      database: db_hub_mensagens
+      database: db_cliente
+      uri: mongodb://dbclientesadmin:dbclientespassword@127.0.0.1:27017/
+      authentication-database: dbclientesadmin
+      username: dbclientesadmin
+      password: dbclientespassword
 
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: email@gmail.com
-    password: teste
-    properties:
-      mail:
-        smtp:
-          auth: true
-          connectiontimeout: 5000
-          timeout: 5000
-          writetimeout: 5000
-# SSL, post 465
-          socketFactory:
-            port: 465
-            class: javax.net.ssl.SSLSocketFactory
+
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: email@gmail.com
+#    password: teste
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          connectiontimeout: 5000
+#          timeout: 5000
+#          writetimeout: 5000
+## SSL, post 465
+#          socketFactory:
+#            port: 465
+#            class: javax.net.ssl.SSLSocketFactory
 
 
 app:

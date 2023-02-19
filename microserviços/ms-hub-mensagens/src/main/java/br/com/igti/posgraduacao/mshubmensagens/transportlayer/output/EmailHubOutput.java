@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EmailOutput {
+public class EmailHubOutput {
     private String id;
     private String emailTo;
     private String titulo;

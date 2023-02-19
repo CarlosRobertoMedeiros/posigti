@@ -1,7 +1,7 @@
 package br.com.igti.posgraduacao.mshubmensagens.transportlayer.documentacao.openapi;
 
-import br.com.igti.posgraduacao.mshubmensagens.transportlayer.input.EmailInput;
-import br.com.igti.posgraduacao.mshubmensagens.transportlayer.output.EmailOutput;
+import br.com.igti.posgraduacao.mshubmensagens.transportlayer.input.EmailHubInput;
+import br.com.igti.posgraduacao.mshubmensagens.transportlayer.output.EmailHubOutput;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,7 +22,7 @@ public interface EmailController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Email enviado com sucesso",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = EmailOutput.class))}),
+                            schema = @Schema(implementation = EmailHubOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -32,5 +32,5 @@ public interface EmailController {
 
     })
     @PostMapping(value = "/enviar-email", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<EmailOutput> enviarEmail(@Valid @RequestBody EmailInput emailInput);
+    ResponseEntity<EmailHubOutput> enviarEmail(@Valid @RequestBody EmailHubInput emailHubInput);
 }
