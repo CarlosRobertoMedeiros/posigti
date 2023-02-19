@@ -1,5 +1,6 @@
 package br.com.igti.posgraduacao.msfraude.interactors;
 
+import br.com.igti.posgraduacao.msfraude.entities.Fraude;
 import br.com.igti.posgraduacao.msfraude.repositories.FraudeRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,29 +27,33 @@ public class FraudeUseCase {
         this.fraudeRepository = fraudeRepository;
     }
 
-    public Boolean getEmailValido(String email) {
+    public Boolean getEmailFraudado(String email) {
         Matcher matcher = patternEmail.matcher(email);
         if (!matcher.matches()){
             return Boolean.FALSE;
         }
-        return fraudeRepository.getEmailValido(email);
+        return fraudeRepository.getEmailFraudado(email);
     }
 
 
-    public Boolean getTelefoneValido(String telefone) {
+    public Boolean getTelefoneFraudado(String telefone) {
         Matcher matcher = patternTelefone.matcher(telefone);
         if (!matcher.matches()){
             return Boolean.FALSE;
         }
-        return fraudeRepository.getTelefoneValido(telefone);
+        return fraudeRepository.getTelefoneFraudado(telefone);
     }
 
 
-    public Boolean getCepValido(String cep) {
+    public Boolean getCepFraudado(String cep) {
         Matcher matcher = patternCep.matcher(cep);
         if (!matcher.matches()){
             return Boolean.FALSE;
         }
-        return fraudeRepository.getCepValido(cep);
+        return fraudeRepository.getCepFraudado(cep);
+    }
+
+    public Fraude inserirFraude(Fraude fraude) {
+        return this.fraudeRepository.inserirFraude(fraude);
     }
 }

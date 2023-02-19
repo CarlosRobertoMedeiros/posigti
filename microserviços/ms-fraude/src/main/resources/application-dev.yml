@@ -3,7 +3,11 @@ spring:
     mongodb:
       host: 127.0.0.1
       port: 27017
-      database: db_fraude
+      database: db_cliente
+      uri: mongodb://dbclientesadmin:dbclientespassword@127.0.0.1:27017/
+      authentication-database: dbclientesadmin
+      username: dbclientesadmin
+      password: dbclientespassword
 
 
 app:
