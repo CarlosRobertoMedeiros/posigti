@@ -1,5 +1,5 @@
 ${AnsiColor.DEFAULT}
-${AnsiColor.GREEN}   __  __      ${AnsiColor.RED}  ____ _ _            _
+${AnsiColor.GREEN}     __  __      ${AnsiColor.RED}  ____ _ _            _
 ${AnsiColor.GREEN}	|  \/  |___  ${AnsiColor.RED} / ___| (_) ___ _ __ | |_ ___  ___
 ${AnsiColor.GREEN}	| |\/| / __| ${AnsiColor.RED}| |   | | |/ _ \ '_ \| __/ _ \/ __|
 ${AnsiColor.GREEN}	| |  | \__ \ ${AnsiColor.RED}| |___| | |  __/ | | | ||  __/\__ \

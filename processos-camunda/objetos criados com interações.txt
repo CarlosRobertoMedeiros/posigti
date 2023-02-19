@@ -20,7 +20,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
 
-cadastro-negativo (tbl_restricao)
+cadastro-negativo (tbl_restricao) -- OK
 {
   "cpf":"11111111111",
   "nome":"asdfasfdfasf",
@@ -40,7 +40,7 @@ cadastro-negativo (tbl_restricao)
 
 
 
-cadastro-positivo(tbl_cadastro_positivo)
+cadastro-positivo(tbl_cadastro_positivo) -- OK
 {
   "cpf":"11111111111",
   "nome":"asdfasfdfasf",
@@ -49,7 +49,7 @@ cadastro-positivo(tbl_cadastro_positivo)
   "dt_Inclusao":"yyyy-mm-dd"
 }
 
-cliente
+cliente 
 {
   "conta":"conta criada"
   "cpf":"11111111111",

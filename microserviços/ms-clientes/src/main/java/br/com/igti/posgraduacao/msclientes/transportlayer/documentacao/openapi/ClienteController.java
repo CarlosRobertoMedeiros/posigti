@@ -1,7 +1,7 @@
-package br.com.igti.posgraduacao.mscadastronegativo.transportlayer.documentacao.openapi;
+package br.com.igti.posgraduacao.msclientes.transportlayer.documentacao.openapi;
 
-import br.com.igti.posgraduacao.mscadastronegativo.transportlayer.input.NegativadoInput;
-import br.com.igti.posgraduacao.mscadastronegativo.transportlayer.output.NegativadoOutput;
+import br.com.igti.posgraduacao.msclientes.transportlayer.input.ClienteInput;
+import br.com.igti.posgraduacao.msclientes.transportlayer.output.ClienteOutput;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Tag(name = "Cadastro Negativo", description = "Operações relacionadas ao Cadastro Negativo")
+@Tag(name = "Clientes", description = "Operações de Clientes")
 @RequestMapping(value = "/api/v1")
-public interface CadastroNegativoController {
+public interface ClienteController {
 
-    @Operation(summary = "Obtém todos os cadastrados negativados")
+    @Operation(summary = "Obtém todos os clientes")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativados encontrados",
+            @ApiResponse(responseCode = "200", description = "Clientes encontrados",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoInput.class))}),
-            @ApiResponse(responseCode = "400", description = "Negativados não encontrado",
+                            schema = @Schema(implementation = ClienteInput.class))}),
+            @ApiResponse(responseCode = "400", description = "Clientes nao encontrados",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
@@ -36,15 +36,15 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @GetMapping(value = "/negativados/", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<List<NegativadoOutput>> getAllNegativados();
+    @GetMapping(value = "/clientes/", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<ClienteOutput>> getAllClientes();
 
-    @Operation(summary = "Obtém o cadastro negativado pelo id")
+    @Operation(summary = "Obtém cliente pelo id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativados encontrados",
+            @ApiResponse(responseCode = "200", description = "Cliente encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoInput.class))}),
-            @ApiResponse(responseCode = "400", description = "Negativados não encontrado",
+                            schema = @Schema(implementation = ClienteInput.class))}),
+            @ApiResponse(responseCode = "400", description = "cliente não encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
@@ -55,18 +55,18 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @GetMapping (value = "/negativados/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> getNegativadoById(
+    @GetMapping (value = "/clientes/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<ClienteOutput> getClienteById(
             @Parameter(name = "id", description = "Id da Transacao", required = true)
             @PathVariable("id") String id
     );
 
-    @Operation(summary = "Obtém cadastro negativado pelo cpf")
+    @Operation(summary = "Obtém cliente pelo cpf")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativados encontrados",
+            @ApiResponse(responseCode = "200", description = "Cliente encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoInput.class))}),
-            @ApiResponse(responseCode = "400", description = "Negativados não encontrado",
+                            schema = @Schema(implementation = ClienteInput.class))}),
+            @ApiResponse(responseCode = "400", description = "Cadastro não encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
@@ -77,19 +77,19 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @GetMapping (value = "/negativados/cpf/{cpf}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> getNegativadoByCpf(
-            @Parameter(name = "cpf", description = "Número do CPF para negativacao", required = true)
+    @GetMapping (value = "/clientes/cpf/{cpf}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<ClienteOutput> getClienteByCpf(
+            @Parameter(name = "cpf", description = "Número do CPF para cadastro de cliente", required = true)
             @PathVariable("cpf") String cpf
     );
 
 
 
-    @Operation(summary = "Negativa o registro")
+    @Operation(summary = "insere informações do Cliente")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativado incluido",
+            @ApiResponse(responseCode = "200", description = "Cadastro de cliente incluido",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoOutput.class))}),
+                            schema = @Schema(implementation = ClienteOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -98,16 +98,16 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @PostMapping(value = "/negativados", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> inserirNegativado(@Valid @RequestBody NegativadoInput negativadoInput);
+    @PostMapping(value = "/clientes", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<ClienteOutput> inserirCliente(@Valid @RequestBody ClienteInput clienteInput);
 
 
 
-    @Operation(summary = "Atualiza a negativacao do registro por id")
+    @Operation(summary = "Atualiza informações do cliente por id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativacao Atualizada",
+            @ApiResponse(responseCode = "200", description = "Cadastro de cliente",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoOutput.class))}),
+                            schema = @Schema(implementation = ClienteOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -116,19 +116,19 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @PutMapping(value = "/negativados/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} , consumes = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> atualizarNegativado(@Parameter(name = "id", description = "Número do Id para negativacao", required = true)
+    @PutMapping(value = "/clientes/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} , consumes = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<ClienteOutput> atualizarCliente(@Parameter(name = "id", description = "ID do Cliente para atualização", required = true)
                                                          @PathVariable("id") String id,
-                                                         @Parameter(description = "Negativado para atualizacao", required = true, schema = @Schema(implementation = NegativadoInput.class))
-                                                         @Valid @RequestBody NegativadoInput negativadoInput);
+                                                         @Parameter(description = "Cadastro de cliente para atualizacao", required = true, schema = @Schema(implementation = ClienteInput.class))
+                                                         @Valid @RequestBody ClienteInput clienteInput);
 
 
 
-    @Operation(summary = "Exclui a negativacao do registro por id")
+    @Operation(summary = "Exclui informações do cliente")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativacao Excluida",
+            @ApiResponse(responseCode = "200", description = "Cliente excluido",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoOutput.class))}),
+                            schema = @Schema(implementation = ClienteOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -137,8 +137,8 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @DeleteMapping(path = "/negativados/{id}")
-    ResponseEntity<Void> excluirNegativado(@Parameter(name = "id", description = "Id da Transacao", required = true)
+    @DeleteMapping(path = "/clientes/{id}")
+    ResponseEntity<Void> excluirCliente(@Parameter(name = "id", description = "Id da Transacao", required = true)
                                            @PathVariable("id") String id);
 
 

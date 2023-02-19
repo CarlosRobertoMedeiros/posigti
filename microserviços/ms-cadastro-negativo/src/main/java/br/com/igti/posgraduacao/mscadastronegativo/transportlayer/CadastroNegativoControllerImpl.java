@@ -77,7 +77,7 @@ public class CadastroNegativoControllerImpl implements CadastroNegativoControlle
     }
 
     @Override
-    public ResponseEntity<NegativadoOutput> atualizarNegativado(@Parameter(name = "id", description = "Número do CPF para negativacao", required = true)
+    public ResponseEntity<NegativadoOutput> atualizarNegativado(@Parameter(name = "id", description = "Número do Id para negativacao", required = true)
                                                                 @PathVariable("id") String id,
                                                                 @Parameter(description = "Negativado para atualizacao", required = true, schema = @Schema(implementation = NegativadoInput.class))
                                                                 @Valid @RequestBody NegativadoInput negativadoInput) {

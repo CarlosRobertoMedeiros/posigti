@@ -1,7 +1,7 @@
-package br.com.igti.posgraduacao.mscadastronegativo.transportlayer.documentacao.openapi;
+package br.com.igti.posgraduacao.mscadastropositivo.transportlayer.documentacao.openapi;
 
-import br.com.igti.posgraduacao.mscadastronegativo.transportlayer.input.NegativadoInput;
-import br.com.igti.posgraduacao.mscadastronegativo.transportlayer.output.NegativadoOutput;
+import br.com.igti.posgraduacao.mscadastropositivo.transportlayer.input.PositivoInput;
+import br.com.igti.posgraduacao.mscadastropositivo.transportlayer.output.PositivoOutput;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Tag(name = "Cadastro Negativo", description = "Operações relacionadas ao Cadastro Negativo")
+@Tag(name = "Cadastro Positivo", description = "Operações relacionadas ao Cadastro Positivo")
 @RequestMapping(value = "/api/v1")
-public interface CadastroNegativoController {
+public interface CadastroPositivoController {
 
-    @Operation(summary = "Obtém todos os cadastrados negativados")
+    @Operation(summary = "Obtém todos os cadastros positivos")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativados encontrados",
+            @ApiResponse(responseCode = "200", description = "Cadastros positivos encontrados",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoInput.class))}),
-            @ApiResponse(responseCode = "400", description = "Negativados não encontrado",
+                            schema = @Schema(implementation = PositivoInput.class))}),
+            @ApiResponse(responseCode = "400", description = "Cadastros positivos nao encontrados",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
@@ -36,15 +36,15 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @GetMapping(value = "/negativados/", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<List<NegativadoOutput>> getAllNegativados();
+    @GetMapping(value = "/positivos/", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<List<PositivoOutput>> getAllPositivos();
 
-    @Operation(summary = "Obtém o cadastro negativado pelo id")
+    @Operation(summary = "Obtém cadastro positivo pelo id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativados encontrados",
+            @ApiResponse(responseCode = "200", description = "Cadastro positivo encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoInput.class))}),
-            @ApiResponse(responseCode = "400", description = "Negativados não encontrado",
+                            schema = @Schema(implementation = PositivoInput.class))}),
+            @ApiResponse(responseCode = "400", description = "Cadastro positivo não encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
@@ -55,18 +55,18 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @GetMapping (value = "/negativados/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> getNegativadoById(
+    @GetMapping (value = "/positivos/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<PositivoOutput> getPositivoById(
             @Parameter(name = "id", description = "Id da Transacao", required = true)
             @PathVariable("id") String id
     );
 
-    @Operation(summary = "Obtém cadastro negativado pelo cpf")
+    @Operation(summary = "Obtém cadastro positivo pelo cpf")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativados encontrados",
+            @ApiResponse(responseCode = "200", description = "Cadastro positivo encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoInput.class))}),
-            @ApiResponse(responseCode = "400", description = "Negativados não encontrado",
+                            schema = @Schema(implementation = PositivoInput.class))}),
+            @ApiResponse(responseCode = "400", description = "Cadastro positivo não encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
@@ -77,19 +77,19 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @GetMapping (value = "/negativados/cpf/{cpf}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> getNegativadoByCpf(
-            @Parameter(name = "cpf", description = "Número do CPF para negativacao", required = true)
+    @GetMapping (value = "/positivos/cpf/{cpf}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<PositivoOutput> getPositivoByCpf(
+            @Parameter(name = "cpf", description = "Número do CPF para cadastro positivo", required = true)
             @PathVariable("cpf") String cpf
     );
 
 
 
-    @Operation(summary = "Negativa o registro")
+    @Operation(summary = "Insere informação no cadastro positivo")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativado incluido",
+            @ApiResponse(responseCode = "200", description = "Cadastro positivo incluido",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoOutput.class))}),
+                            schema = @Schema(implementation = PositivoOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -98,16 +98,16 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @PostMapping(value = "/negativados", produces = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> inserirNegativado(@Valid @RequestBody NegativadoInput negativadoInput);
+    @PostMapping(value = "/positivos", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<PositivoOutput> inserirPositivo(@Valid @RequestBody PositivoInput negativadoInput);
 
 
 
-    @Operation(summary = "Atualiza a negativacao do registro por id")
+    @Operation(summary = "Atualiza informação no cadastro positivo")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Negativacao Atualizada",
+            @ApiResponse(responseCode = "200", description = "Cadastro positivo atualizado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoOutput.class))}),
+                            schema = @Schema(implementation = PositivoOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -116,19 +116,19 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @PutMapping(value = "/negativados/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} , consumes = {MediaType.APPLICATION_JSON_VALUE})
-    ResponseEntity<NegativadoOutput> atualizarNegativado(@Parameter(name = "id", description = "Número do Id para negativacao", required = true)
+    @PutMapping(value = "/positivos/{id}", produces = {MediaType.APPLICATION_JSON_VALUE} , consumes = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<PositivoOutput> atualizarPositivo(@Parameter(name = "id", description = "Número do CPF para cadastro positivo", required = true)
                                                          @PathVariable("id") String id,
-                                                         @Parameter(description = "Negativado para atualizacao", required = true, schema = @Schema(implementation = NegativadoInput.class))
-                                                         @Valid @RequestBody NegativadoInput negativadoInput);
+                                                         @Parameter(description = "Cadastro Positivo para atualizacao", required = true, schema = @Schema(implementation = PositivoInput.class))
+                                                         @Valid @RequestBody PositivoInput positivoInput);
 
 
 
-    @Operation(summary = "Exclui a negativacao do registro por id")
+    @Operation(summary = "Exclui registro do cadastro positivo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Negativacao Excluida",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = NegativadoOutput.class))}),
+                            schema = @Schema(implementation = PositivoOutput.class))}),
             @ApiResponse(responseCode = "500", description = "Erro interno",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -137,8 +137,8 @@ public interface CadastroNegativoController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @DeleteMapping(path = "/negativados/{id}")
-    ResponseEntity<Void> excluirNegativado(@Parameter(name = "id", description = "Id da Transacao", required = true)
+    @DeleteMapping(path = "/positivos/{id}")
+    ResponseEntity<Void> excluirPositivo(@Parameter(name = "id", description = "Id da Transacao", required = true)
                                            @PathVariable("id") String id);
 
 

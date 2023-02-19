@@ -1,18 +1,20 @@
-package br.com.igti.posgraduacao.mscadastronegativo.entities;
+package br.com.igti.posgraduacao.mscadastropositivo.entities;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "Col_Cad_Negativo")
-public class Negativado {
+@Document(collection = "Col_Cad_Positivo")
+public class Positivo {
 
     @Id
     private String id; //= UUID.randomUUID();
