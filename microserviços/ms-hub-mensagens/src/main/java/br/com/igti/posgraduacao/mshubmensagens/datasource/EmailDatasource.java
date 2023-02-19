@@ -44,6 +44,6 @@ public class EmailDatasource implements EmailRepository {
 
     }
 
-
-
 }
+// TODO: Utilizar o sendGrid
+//https://github.com/sendgrid/sendgrid-java/blob/main/examples/mail/mail.java

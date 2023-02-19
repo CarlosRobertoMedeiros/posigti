@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmailInput {
-    private String email;
-    private String assunto;
+    private String emailTo;
+    private String titulo;
     private String conteudo;
 }

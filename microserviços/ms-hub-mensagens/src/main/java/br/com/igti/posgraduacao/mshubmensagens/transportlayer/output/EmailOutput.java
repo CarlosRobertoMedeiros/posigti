@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmailOutput {
     private String id;
-    private String email;
-    private String assunto;
+    private String emailTo;
+    private String titulo;
     private String conteudo;
     private LocalDateTime dataEnvioEmail;
 }

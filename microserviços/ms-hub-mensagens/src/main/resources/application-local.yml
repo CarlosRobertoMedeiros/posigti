@@ -6,10 +6,10 @@ spring:
       database: db_hub_mensagens
 
   mail:
-    host: mtp.gmail.com
+    host: smtp.gmail.com
     port: 587
-    username: email@gmail.com
-    password: teste
+    username: carlosmedeiroslimaposigti@gmail.com
+    password: posigti@123
     properties:
       mail:
         smtp:
