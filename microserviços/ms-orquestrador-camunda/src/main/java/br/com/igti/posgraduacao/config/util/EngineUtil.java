@@ -13,7 +13,7 @@ import org.camunda.bpm.engine.runtime.VariableInstance;
 
 import java.util.List;
 
-import static br.com.igti.posgraduacao.config.util.ProcessVariables.ABERTURA_DE_CONTA_PROCESS_NAME;
+import static br.com.igti.posgraduacao.config.util.OrquestradorProcessVariables.ABERTURA_DE_CONTA_PROCESS_NAME;
 
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

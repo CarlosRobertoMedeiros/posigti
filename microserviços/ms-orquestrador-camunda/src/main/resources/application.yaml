@@ -4,23 +4,7 @@ server:
     context-path: /orquestrador-camunda
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5437/camunda
-    username: dbcamundaadmin
-    password: dbcamundapassword
+  profiles:
+    default: local
+    active: local
 
-camunda:
-  bpm:
-    admin-user:
-      id: demo
-      password: demo
-
-# custom path for swagger-ui
-springdoc:
-  swagger-ui:
-    path: /swaggerui.html
-    operationsSorter: alpha
-    tagsSorter: alpha
-  # custom path for api docs
-  api-docs:
-    path: /api-docs

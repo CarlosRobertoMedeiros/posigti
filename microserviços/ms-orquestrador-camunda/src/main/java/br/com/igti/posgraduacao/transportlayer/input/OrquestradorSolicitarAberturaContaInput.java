@@ -1,9 +1,16 @@
 package br.com.igti.posgraduacao.transportlayer.input;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class OrquestradorRequestDto {
+@Getter
+@Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class OrquestradorSolicitarAberturaContaInput {
+
     private String cpf;
     private String nome;
     private String endereco;

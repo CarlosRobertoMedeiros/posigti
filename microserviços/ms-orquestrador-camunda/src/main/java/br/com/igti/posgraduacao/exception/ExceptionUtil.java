@@ -1,13 +1,8 @@
 package br.com.igti.posgraduacao.exception;
 
-
+import br.com.igti.posgraduacao.datasources.http.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.NotFoundException;
-
 
 public final class ExceptionUtil {
 
@@ -33,24 +28,24 @@ public final class ExceptionUtil {
     public static void throwException(ResourceException e) {
         switch (e.getCode().substring(0, 3)) {
             case "400":
-                throw new BadRequestException(e.getMessage() + e.getDeveloperMessage() + e.getCode() +  e.getOrigin());
-//            case "401":
-//                throw new UnauthorizedException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+                throw new BadRequestException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+            case "401":
+                throw new UnauthorizedException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
             case "404":
-                throw new NotFoundException(e.getMessage() + e.getDeveloperMessage() + e.getCode() + e.getOrigin());
-//            case "405":
-//                throw new MethodNotAllowedException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
-//            case "406":
-//                throw new NotAcceptableException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
-//            case "412":
-//                throw new PreconditionFailedException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
-//            case "415":
-//                throw new UnsupportedMediaTypeException(e.getMessage(), e.getDeveloperMessage(), e.getCode(),
-//                        e.getOrigin());
-//            case "422":
-//                throw new UnprocessableEntityException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+                throw new NotFoundException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+            case "405":
+                throw new MethodNotAllowedException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+            case "406":
+                throw new NotAcceptableException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+            case "412":
+                throw new PreconditionFailedException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
+            case "415":
+                throw new UnsupportedMediaTypeException(e.getMessage(), e.getDeveloperMessage(), e.getCode(),
+                        e.getOrigin());
+            case "422":
+                throw new UnprocessableEntityException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
             default:
-                throw new InternalServerErrorException(e.getMessage() + e.getDeveloperMessage() +  e.getCode() + e.getOrigin());
+                throw new InternalServerErrorException(e.getMessage(), e.getDeveloperMessage(), e.getCode(), e.getOrigin());
         }
     }
 }

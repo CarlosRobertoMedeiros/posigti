@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5437/camunda
+    username: dbcamundaadmin
+    password: dbcamundapassword
+
+camunda:
+  bpm:
+    admin-user:
+      id: demo
+      password: demo
+
+# custom path for swagger-ui
+springdoc:
+  swagger-ui:
+    path: /swaggerui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+  # custom path for api docs
+  api-docs:
+    path: /api-docs
+
+#Feign Client
+servicos:
+  fraude:
+    url: http://localhost:8051/service-fraude/api/v1/fraude

@@ -1,7 +1,7 @@
 package br.com.igti.posgraduacao.transportlayer.documentacao.openapi;
 
-import br.com.igti.posgraduacao.transportlayer.input.OrquestradorRequestDto;
-import br.com.igti.posgraduacao.transportlayer.output.OrquestradorResponseDto;
+import br.com.igti.posgraduacao.transportlayer.input.OrquestradorSolicitarAberturaContaInput;
+import br.com.igti.posgraduacao.transportlayer.output.OrquestradorSolicitarAberturaContaOutput;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,13 +18,12 @@ import javax.validation.Valid;
 
 @Tag(name = "Orquestrador-Camunda", description = "Interface de Comunicação com Orquestrador")
 @RequestMapping(value = "/api/v1")
-public interface OrquestradorController {
-
+public interface OrquestradorSolicitarAberturaContaController {
     @Operation(summary = "Interface para orquestrar o Processo do Camunda para Abertura de Conta")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Requisicao Realizada com Sucesso",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = OrquestradorRequestDto.class))}),
+                            schema = @Schema(implementation = OrquestradorSolicitarAberturaContaOutput.class))}),
             @ApiResponse(responseCode = "400", description = "Requisicao Realizada com Erro",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                             schema = @Schema(implementation = Void.class))}),
@@ -33,11 +32,7 @@ public interface OrquestradorController {
                             schema = @Schema(implementation = Void.class))}),
 
     })
-    @PostMapping(value = "/solicitarAberturaDeConta",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    @Valid
-    ResponseEntity<OrquestradorResponseDto> solicitarAberturaDeConta(
-           @RequestBody OrquestradorRequestDto orquestradorRequestDto
-    );
+    @PostMapping(value = "/solicitar-abertura-conta", produces = {MediaType.APPLICATION_JSON_VALUE})
+    ResponseEntity<OrquestradorSolicitarAberturaContaOutput> solicitarAberturaDeConta(@Valid @RequestBody OrquestradorSolicitarAberturaContaInput orquestradorSolicitarAberturaContaInput);
 }
+

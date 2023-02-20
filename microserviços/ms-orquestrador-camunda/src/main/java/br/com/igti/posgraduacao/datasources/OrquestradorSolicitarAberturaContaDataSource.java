@@ -1,11 +1,10 @@
 package br.com.igti.posgraduacao.datasources;
 
 import br.com.igti.posgraduacao.config.util.EngineUtil;
+import br.com.igti.posgraduacao.entities.OrquestradorSolicitarAberturaConta;
 import br.com.igti.posgraduacao.exception.ExceptionUtil;
 import br.com.igti.posgraduacao.exception.ResourceException;
-import br.com.igti.posgraduacao.repositories.OrquestradorRepository;
-import br.com.igti.posgraduacao.transportlayer.input.OrquestradorRequestDto;
-import br.com.igti.posgraduacao.transportlayer.output.OrquestradorResponseDto;
+import br.com.igti.posgraduacao.repositories.OrquestradorSolicitarAberturaContaRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camunda.bpm.engine.runtime.ProcessInstanceWithVariables;
@@ -21,44 +20,43 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static br.com.igti.posgraduacao.config.util.ProcessVariables.*;
+import static br.com.igti.posgraduacao.config.util.OrquestradorProcessVariables.*;
 
 @Component
+public class OrquestradorSolicitarAberturaContaDataSource implements OrquestradorSolicitarAberturaContaRepository {
 
-public class OrquestradorDataSource implements OrquestradorRepository {
-
-    private static final Logger log = LoggerFactory.getLogger(OrquestradorDataSource.class);
+    private static final Logger log = LoggerFactory.getLogger(OrquestradorSolicitarAberturaContaDataSource.class);
 
     @Override
-    public OrquestradorResponseDto solicitarAberturaDeConta(OrquestradorRequestDto orquestradorRequestDto) {
+    public OrquestradorSolicitarAberturaConta solicitarAberturaDeConta(OrquestradorSolicitarAberturaConta orquestradorSolicitarAberturaConta) {
         final VariableMap variables = Variables.createVariables();
         final ObjectMapper mapper = new ObjectMapper();
         ProcessInstanceWithVariables instance;
-        String IdempotentIdGenerated = UUID.randomUUID().toString();
+        String bussinessKey = UUID.randomUUID().toString();
         try{
-            String jsonReqAberturaConta = mapper.writeValueAsString(orquestradorRequestDto).replace("\"","\'");
-            variables.putValue(ID_IDEMPOTENTE, IdempotentIdGenerated);
-            variables.putValue(JSON_REQUSICAO_ABERTURA_CONTA,  Variables.objectValue(jsonReqAberturaConta));
+            String jsonReqAberturaConta = mapper.writeValueAsString(orquestradorSolicitarAberturaConta).replace("\"","\'");
+            variables.putValue(BUSSINESS_KEY, bussinessKey.toString());
+            variables.putValue(JSON_REQ_ABERTURA_CONTA,  Variables.objectValue(jsonReqAberturaConta));
 
             instance = EngineUtil.getInstance().getRuntimeEngine().createProcessInstanceByKey(ABERTURA_DE_CONTA_PROCESS_NAME)
-                    .businessKey(IdempotentIdGenerated)
+                    .businessKey(bussinessKey.toString())
                     .setVariables(variables)
                     .executeWithVariablesInReturn();
 
-        }catch (JsonProcessingException e) {
+        }catch (Exception e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             ResourceException resourceException =  ExceptionUtil.generateException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_JSON_EXCEPTION, e.getMessage(),
-                    MensagemDataSource.Origem.SERVICE_PRE_APROVADO_QUENTE);
+                    MensagemDataSource.MessageDataSource.INTERNAL_ERROR_EXCEPTION, e.getMessage(),
+                    MensagemDataSource.Origem.SERVICE_ABERTURA_DE_CONTA);
             throw resourceException;
         }
 
         lancaExceptionEmCasoDeErroNoProcesso(instance.getVariables().entrySet().stream().filter(erro -> erro.getKey().contains("ERROR_TECNICO")).collect(Collectors.toUnmodifiableList()));
 
         return preencheResponse(instance.getProcessInstanceId(),
-                                instance.getVariables().get(JSON_RESP_ABERTURA_CONTA),
-                                IdempotentIdGenerated,
-                                orquestradorRequestDto.getCpf());
+                                instance.getVariables().get(BUSSINESS_KEY).toString(),
+                                bussinessKey,
+                                orquestradorSolicitarAberturaConta.getCpf());
     }
 
     private void lancaExceptionEmCasoDeErroNoProcesso(List<Map.Entry<String, Object>> errorList) throws ResourceException {
@@ -70,14 +68,14 @@ public class OrquestradorDataSource implements OrquestradorRepository {
             } catch (JsonProcessingException e) {
                 ResourceException jsonException =  ExceptionUtil.generateException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
                         MensagemDataSource.MessageDataSource.ERRO_JSON_EXCEPTION, e.getMessage(),
-                        MensagemDataSource.Origem.SERVICE_PRE_APROVADO_QUENTE);
+                        MensagemDataSource.Origem.SERVICE_ABERTURA_DE_CONTA);
                 throw jsonException;
             }
         }
     }
 
-    private OrquestradorResponseDto preencheResponse(String processInstanceId, Object respostaPreAprovado, String idIdempotente, String cpf) throws ResourceException {
-        final OrquestradorResponseDto responseDto = new OrquestradorResponseDto();
+    private OrquestradorSolicitarAberturaConta preencheResponse(String processInstanceId, Object respostaPreAprovado, String idIdempotente, String cpf) throws ResourceException {
+        //final OrquestradorSolicitarAberturaContaOutput responseDto = new OrquestradorSolicitarAberturaContaOutput();
 
 //        RetornoConsultaLimite retornoConsultaLimite = null;
 //        responseDto.setIdProcesso(processInstanceId);
@@ -116,7 +114,7 @@ public class OrquestradorDataSource implements OrquestradorRepository {
 //            throw resourceException;
 //        }
 
-        return responseDto;
+        return null;
     }
 
 
