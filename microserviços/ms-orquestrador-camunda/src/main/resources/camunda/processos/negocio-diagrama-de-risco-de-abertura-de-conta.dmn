@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="negocio-diagrama-de-risco-de-abertura-de-conta" name="negocio-diagrama-de-risco-de-abertura-de-conta" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
-  <decision id="Decision_risco" name="Analisar risco onboarding">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="negocio-diagrama-de-risco-de-abertura-de-conta" name="negocio-diagrama-de-risco-de-abertura-de-conta" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <decision id="Decision_risco" name="Analisar risco onboarding" camunda:versionTag="1.0">
     <informationRequirement id="InformationRequirement_0wy3fc3">
       <requiredDecision href="#Decision_endividamento" />
     </informationRequirement>
@@ -37,7 +37,7 @@
       </rule>
     </decisionTable>
   </decision>
-  <decision id="Decision_endividamento" name="Analisar endividamento">
+  <decision id="Decision_endividamento" name="Analisar endividamento" camunda:versionTag="1.0">
     <variable id="InformationItem_0omg7wb" name="endividamento" typeRef="double" />
     <informationRequirement id="InformationRequirement_154y6iv">
       <requiredDecision href="#Decision_dados" />
@@ -49,7 +49,7 @@
   <inputData id="InputData_0cx880t" name="Emprestimo" />
   <inputData id="InputData_17ksnfz" name="Cartão de Débito" />
   <inputData id="InputData_0gaylmk" name="Renda" />
-  <decision id="Decision_dados" name="Entrada de Dados">
+  <decision id="Decision_dados" name="Entrada de Dados" camunda:versionTag="1.0">
     <informationRequirement id="InformationRequirement_1i3g6k8">
       <requiredInput href="#InputData_17ksnfz" />
     </informationRequirement>

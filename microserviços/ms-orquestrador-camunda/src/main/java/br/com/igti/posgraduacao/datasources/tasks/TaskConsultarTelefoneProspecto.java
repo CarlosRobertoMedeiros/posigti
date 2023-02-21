@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-@NoArgsConstructor
 public class TaskConsultarTelefoneProspecto implements JavaDelegate {
 
     private static final Logger log = LoggerFactory.getLogger(TaskConsultarTelefoneProspecto.class);

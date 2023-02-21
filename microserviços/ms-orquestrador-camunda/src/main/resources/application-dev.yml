@@ -24,3 +24,15 @@ springdoc:
 servicos:
   fraude:
     url: http://localhost:8051/service-fraude/api/v1/fraude
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 10000
+      fraude:
+        connectTimeout: 40000
+        readTimeout: 10000
+

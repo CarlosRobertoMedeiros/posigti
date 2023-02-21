@@ -2,9 +2,9 @@ package br.com.igti.posgraduacao.datasources;
 
 import br.com.igti.posgraduacao.datasources.feign.ClientFraude;
 import br.com.igti.posgraduacao.repositories.FraudeRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class FraudeDataSource implements FraudeRepository {
 
     private static final String MESSAGE_ERROR = "Falha ao recuperar os dados de Fraude!";

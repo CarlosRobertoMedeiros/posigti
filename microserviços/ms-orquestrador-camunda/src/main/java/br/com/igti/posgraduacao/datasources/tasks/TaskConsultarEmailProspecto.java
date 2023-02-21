@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-@NoArgsConstructor
 public class TaskConsultarEmailProspecto implements JavaDelegate {
 
     private static final Logger log = LoggerFactory.getLogger(TaskConsultarEmailProspecto.class);

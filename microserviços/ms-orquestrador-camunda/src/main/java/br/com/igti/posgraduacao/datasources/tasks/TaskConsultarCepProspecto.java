@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import static br.com.igti.posgraduacao.config.util.OrquestradorProcessVariables.JSON_REQ_ABERTURA_CONTA;
 
 @Component
-@NoArgsConstructor
 public class TaskConsultarCepProspecto implements JavaDelegate {
 
     private static final Logger log = LoggerFactory.getLogger(TaskConsultarCepProspecto.class);
