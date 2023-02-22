@@ -37,11 +37,18 @@ public class OrquestradorSolicitarAberturaContaDataSource implements Orquestrado
             String jsonReqAberturaConta = mapper.writeValueAsString(orquestradorSolicitarAberturaConta).replace("\"","\'");
             variables.putValue(BUSSINESS_KEY, bussinessKey.toString());
             variables.putValue(JSON_REQ_ABERTURA_CONTA,  Variables.objectValue(jsonReqAberturaConta));
+            variables.putValue(DEBITO_CARTAO,  orquestradorSolicitarAberturaConta.getCartaoDebito());
+            variables.putValue(EMPRESTIMO,  orquestradorSolicitarAberturaConta.getEmprestimo());
+            variables.putValue(RENDA,  orquestradorSolicitarAberturaConta.getRenda());
 
             instance = EngineUtil.getInstance().getRuntimeEngine().createProcessInstanceByKey(ABERTURA_DE_CONTA_PROCESS_NAME)
                     .businessKey(bussinessKey.toString())
                     .setVariables(variables)
                     .executeWithVariablesInReturn();
+
+            System.out.println(variables);
+
+
 
         }catch (Exception e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
