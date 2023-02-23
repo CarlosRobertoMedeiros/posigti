@@ -37,26 +37,26 @@ public class TaskConsultarCepProspecto implements JavaDelegate {
             Gson g = new Gson();
             OrquestradorSolicitarAberturaConta osac = g.fromJson(delegateExecution.getVariable(OrquestradorProcessVariables.JSON_REQ_ABERTURA_CONTA).toString(), OrquestradorSolicitarAberturaConta.class);
 
-            final String  cep = osac.getCep();
+            final String cep = osac.getCep();
 
             final Boolean isCepFraudado = fraudeRepository.isCepFraudado(cep);
 
             if (isCepFraudado) {
                 delegateExecution.setVariable(OrquestradorProcessVariables.CEP_FRAUDADO, true);
-            }else{
+            } else {
                 delegateExecution.setVariable(OrquestradorProcessVariables.CEP_FRAUDADO, false);
             }
 
             log.info("TaskConsultarCepProspecto - Fim");
         } catch (BpmnModelException e) {
-            delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", TaskConsultarTelefoneProspecto.class.getSimpleName() + " - " + e.getMessage());
+            delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", TaskConsultarCepProspecto.class.getSimpleName() + " - " + e.getMessage());
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
 
         } catch (HttpClientErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             final String jsonException = ExceptionUtil.generateJsonFromException(e.getStatusCode().toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_AUTOMOVEL, e.getResponseBodyAsString(),
+                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_CEP, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", jsonException);
             throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
@@ -64,14 +64,14 @@ public class TaskConsultarCepProspecto implements JavaDelegate {
         } catch (HttpServerErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             final String jsonException = ExceptionUtil.generateJsonFromException(e.getStatusCode().toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_AUTOMOVEL, e.getResponseBodyAsString(),
+                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_CEP, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", jsonException);
             throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
 
         } catch (Exception e) {
             final String jsonException = ExceptionUtil.generateJsonFromException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_AUTOMOVEL, e.getMessage(),
+                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_CEP, e.getMessage(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", jsonException);
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());

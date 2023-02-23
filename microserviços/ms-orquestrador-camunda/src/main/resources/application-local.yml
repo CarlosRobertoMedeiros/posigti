@@ -20,7 +20,22 @@ springdoc:
   api-docs:
     path: /api-docs
 
-#Feign Client
+#Url
 servicos:
   fraude:
     url: http://localhost:8051/service-fraude/api/v1/fraude
+  cadastropositivo:
+    url: http://localhost:8021/service-cadastro-positivo/api/v1/
+  cadastronegativo:
+    url: http://localhost:8031/service-cadastro-negativo/api/v1/
+
+#Feign Client
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 10000
+      fraude:
+        connectTimeout: 40000
+        readTimeout: 10000

@@ -17,7 +17,8 @@ public class OrquestradorProcessVariables {
     public static final String TELEFONE_FRAUDADO = "telefoneFraudado";
     public static final String CEP_FRAUDADO = "cepFraudado";
     public static final String EMAIL_FRAUDADO = "emailFraudado";
-
+    public static final String  INSERIR_POSITIVO = "inserirPositivo";
+    public static final String  INSERIR_NEGATIVADO = "inserirNegativado";
 
     public static final String EMAIL = "email";
     public static final String CEP = "cep";

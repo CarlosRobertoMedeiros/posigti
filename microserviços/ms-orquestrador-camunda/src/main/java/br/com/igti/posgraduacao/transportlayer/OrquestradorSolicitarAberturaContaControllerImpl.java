@@ -32,6 +32,4 @@ public class OrquestradorSolicitarAberturaContaControllerImpl implements Orquest
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(OrquestradorSolicitacaoAberturaContaMapper.INSTANCE.mapOutput(orquestradorSolicitarAberturaConta));
     }
-
-
 }

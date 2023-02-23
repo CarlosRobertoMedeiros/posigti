@@ -38,13 +38,13 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
             Gson g = new Gson();
             OrquestradorSolicitarAberturaConta osac = g.fromJson(delegateExecution.getVariable(OrquestradorProcessVariables.JSON_REQ_ABERTURA_CONTA).toString(), OrquestradorSolicitarAberturaConta.class);
 
-            final String  telefone = osac.getTelefone();
+            final String telefone = osac.getTelefone();
 
             final Boolean isTelefoneFraudado = fraudeRepository.isTelefoneFraudado(telefone);
 
             if (isTelefoneFraudado) {
                 delegateExecution.setVariable(OrquestradorProcessVariables.TELEFONE_FRAUDADO, true);
-            }else{
+            } else {
                 delegateExecution.setVariable(OrquestradorProcessVariables.TELEFONE_FRAUDADO, false);
             }
 
@@ -57,7 +57,7 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
         } catch (HttpClientErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             final String jsonException = ExceptionUtil.generateJsonFromException(e.getStatusCode().toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_AUTOMOVEL, e.getResponseBodyAsString(),
+                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_TELEFONE, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", jsonException);
             throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
@@ -65,14 +65,14 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
         } catch (HttpServerErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             final String jsonException = ExceptionUtil.generateJsonFromException(e.getStatusCode().toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_AUTOMOVEL, e.getResponseBodyAsString(),
+                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_TELEFONE, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", jsonException);
             throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
 
         } catch (Exception e) {
             final String jsonException = ExceptionUtil.generateJsonFromException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_AUTOMOVEL, e.getMessage(),
+                    MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_TELEFONE, e.getMessage(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", jsonException);
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
