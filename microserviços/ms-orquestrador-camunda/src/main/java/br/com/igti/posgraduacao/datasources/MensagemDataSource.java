@@ -38,6 +38,7 @@ public class MensagemDataSource {
 
         public static final String ERRO_INCLUIR_PROSPECTO_CADASTRO_POSITIVO = "Erro ao incluir o prospecto no cadastro positivo";
         public static final String ERRO_INCLUIR_PROSPECTO_CADASTRO_NEGATIVO = "Erro ao incluir o prospecto no cadastro negativo";
+        public static final String ERRO_INCLUIR_CLIENTE = "Erro ao incluir um cliente";
 
 
         public static final String JSON_ERROR_EXCEPTION = "ERRO AO EFETUAR UMA OPERAÇÃO COM JSON";
