@@ -31,6 +31,9 @@ servicos:
     url: http://localhost:8031/service-cadastro-negativo/api/v1/
   cadastrocliente:
     url: http://localhost:8041/service-cliente/api/v1/
+  cliente:
+    notifica:
+      url: http://localhost:8061/service-hub-mensagens/api/v1/
 
 
 #Feign Client
