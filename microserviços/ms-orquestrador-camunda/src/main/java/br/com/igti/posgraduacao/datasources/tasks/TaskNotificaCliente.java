@@ -20,11 +20,11 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 @Component
-public class TaskINotificaCliente implements JavaDelegate {
-    private static final Logger log = LoggerFactory.getLogger(TaskINotificaCliente.class);
+public class TaskNotificaCliente implements JavaDelegate {
+    private static final Logger log = LoggerFactory.getLogger(TaskNotificaCliente.class);
     private NotificaClienteRepository notificaClienteRepository;
 
-    public TaskINotificaCliente(NotificaClienteRepository notificaClienteRepository) {
+    public TaskNotificaCliente(NotificaClienteRepository notificaClienteRepository) {
         this.notificaClienteRepository = notificaClienteRepository;
     }
 
@@ -46,7 +46,9 @@ public class TaskINotificaCliente implements JavaDelegate {
             Double emprestimo = osac.getEmprestimo();
             String email = osac.getEmail();
 
-            final EmailHubInput emailHubInput = new EmailHubInput(email,"titulo","conteudo");
+            String titulo = "BEM VINDO AO BANCO ABC";
+            String conteudoFormatado = String.format("Caro(a) Amigo(a) ... %s é com grande satisfação que te recebemos como cliente do banco. Sua agência é: %s e sua conta é %s",osac.getNome(), "001","conta");
+            final EmailHubInput emailHubInput = new EmailHubInput(email,titulo,conteudoFormatado);
             EmailHubOutput emailHubOutputData = notificaClienteRepository.enviarEmail(emailHubInput);
 
             if (emailHubOutputData!=null) {
@@ -57,7 +59,7 @@ public class TaskINotificaCliente implements JavaDelegate {
 
             log.info("TaskNotificaCliente - Fim");
         } catch (BpmnModelException e) {
-            delegateExecution.setVariable("ERROR_TECNICO_ENVIAR_EMAIL", TaskINotificaCliente.class.getSimpleName() + " - " + e.getMessage());
+            delegateExecution.setVariable("ERROR_TECNICO_ENVIAR_EMAIL", TaskNotificaCliente.class.getSimpleName() + " - " + e.getMessage());
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             throw new BpmnError("ERROR_ENVIAR_EMAIL", "ERROR_ENVIAR_EMAIL", e.getCause());
 
