@@ -51,6 +51,8 @@ public class TaskIncluirCliente implements JavaDelegate {
 
             if (clienteOutputData!=null) {
                 delegateExecution.setVariable(OrquestradorProcessVariables.INSERIR_CLIENTE, true);
+                delegateExecution.setVariable("agencia", clienteOutputData.getAgencia());
+                delegateExecution.setVariable("conta", clienteOutputData.getConta());
             }else{
                 delegateExecution.setVariable(OrquestradorProcessVariables.INSERIR_CLIENTE, false);
             }

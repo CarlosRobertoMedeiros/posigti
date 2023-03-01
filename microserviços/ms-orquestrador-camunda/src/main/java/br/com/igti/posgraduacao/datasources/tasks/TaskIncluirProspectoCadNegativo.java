@@ -47,6 +47,9 @@ public class TaskIncluirProspectoCadNegativo implements JavaDelegate {
 
             if (negativadoData!=null) {
                 delegateExecution.setVariable(OrquestradorProcessVariables.INSERIR_NEGATIVADO, true);
+                delegateExecution.setVariable("cpf", cpf);
+                delegateExecution.setVariable("nome", nome);
+                delegateExecution.setVariable("email", email);
             }else{
                 delegateExecution.setVariable(OrquestradorProcessVariables.INSERIR_NEGATIVADO, false);
             }

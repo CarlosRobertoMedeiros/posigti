@@ -33,6 +33,9 @@ servicos:
   cliente:
     notifica:
       url: http://localhost:8061/service-hub-mensagens/api/v1/
+  gerente:
+    notifica:
+      url: http://localhost:8061/service-hub-mensagens/api/v1/
 
 #Feign Client
 feign:

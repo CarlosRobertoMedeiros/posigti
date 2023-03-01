@@ -7,6 +7,7 @@ import br.com.igti.posgraduacao.datasources.feign.output.EmailHubOutput;
 import br.com.igti.posgraduacao.entities.OrquestradorSolicitarAberturaConta;
 import br.com.igti.posgraduacao.exception.ExceptionUtil;
 import br.com.igti.posgraduacao.repositories.NotificaClienteRepository;
+import br.com.igti.posgraduacao.repositories.NotificaGerenteBoasVindasRepository;
 import com.google.gson.Gson;
 import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -22,19 +23,22 @@ import org.springframework.web.client.HttpServerErrorException;
 @Component
 public class TaskNotificaGerenteBoasVindas implements JavaDelegate {
     private static final Logger log = LoggerFactory.getLogger(TaskNotificaGerenteBoasVindas.class);
-    private NotificaClienteRepository notificaClienteRepository;
+    private NotificaGerenteBoasVindasRepository notificaGerenteBoasVindasRepository;
 
-    public TaskNotificaGerenteBoasVindas(NotificaClienteRepository notificaClienteRepository) {
-        this.notificaClienteRepository = notificaClienteRepository;
+    public TaskNotificaGerenteBoasVindas(NotificaGerenteBoasVindasRepository notificaGerenteBoasVindasRepository) {
+        this.notificaGerenteBoasVindasRepository = notificaGerenteBoasVindasRepository;
     }
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         try {
-            log.info("TaskNotificaCliente - Inicio");
+            log.info("TaskNotificaGerenteBoasVindas - Inicio");
 
             Gson g = new Gson();
             OrquestradorSolicitarAberturaConta osac = g.fromJson(delegateExecution.getVariable(OrquestradorProcessVariables.JSON_REQ_ABERTURA_CONTA).toString(), OrquestradorSolicitarAberturaConta.class);
+
+            String agenciaCliente  = g.fromJson(delegateExecution.getVariable("agencia").toString(), String.class);
+            String contaCliente  = g.fromJson(delegateExecution.getVariable("conta").toString(), String.class);
 
             String cpf = osac.getCpf();
             String nome = osac.getNome();
@@ -44,12 +48,12 @@ public class TaskNotificaGerenteBoasVindas implements JavaDelegate {
             Double renda = osac.getRenda();
             Double cartaoDebito = osac.getCartaoDebito();
             Double emprestimo = osac.getEmprestimo();
-            String email = osac.getEmail();
+            String emailGerente = "carlosmedeiroslima@gmail.com";
 
-            String titulo = "BEM VINDO AO BANCO ABC";
-            String conteudoFormatado = String.format("Caro(a) Amigo(a) ... %s é com grande satisfação que te recebemos como cliente do banco. Sua agência é: %s e sua conta é %s",osac.getNome(), "001","conta");
-            final EmailHubInput emailHubInput = new EmailHubInput(email,titulo,conteudoFormatado);
-            EmailHubOutput emailHubOutputData = notificaClienteRepository.enviarEmail(emailHubInput);
+            String titulo = "NOTIFICAÇÃO DE NOVO CLIENTE";
+            String conteudoFormatado = String.format("Caro(a) Gerente(a) ... Antonio Nunes, favor realizar o primeiro contato com o cliente %s referente as boas vindas. Sua agência é: %s e sua conta é %s",osac.getNome(), agenciaCliente,contaCliente);
+            final EmailHubInput emailHubInput = new EmailHubInput(emailGerente,titulo,conteudoFormatado);
+            EmailHubOutput emailHubOutputData = notificaGerenteBoasVindasRepository.enviarEmail(emailHubInput);
 
             if (emailHubOutputData!=null) {
                 delegateExecution.setVariable(OrquestradorProcessVariables.ENVIAR_EMAIL, true);
@@ -57,7 +61,7 @@ public class TaskNotificaGerenteBoasVindas implements JavaDelegate {
                 delegateExecution.setVariable(OrquestradorProcessVariables.ENVIAR_EMAIL, false);
             }
 
-            log.info("TaskNotificaCliente - Fim");
+            log.info("TaskNotificaGerenteBoasVindas - Fim");
         } catch (BpmnModelException e) {
             delegateExecution.setVariable("ERROR_TECNICO_ENVIAR_EMAIL", TaskNotificaGerenteBoasVindas.class.getSimpleName() + " - " + e.getMessage());
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());

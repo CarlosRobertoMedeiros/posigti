@@ -50,7 +50,7 @@ public class ClienteUseCase {
             Cliente clienteInformadoNoParametro =  clienteData;
             clienteInformadoNoParametro.setId(clienteData.getId());
             clienteInformadoNoParametro.setCpf(cliente.getCpf());
-            clienteInformadoNoParametro.setBanco(cliente.getBanco());
+            clienteInformadoNoParametro.setAgencia(cliente.getAgencia());
             clienteInformadoNoParametro.setConta(cliente.getConta());
             clienteInformadoNoParametro.setNome(cliente.getNome());
             clienteInformadoNoParametro.setEndereco(cliente.getEndereco());

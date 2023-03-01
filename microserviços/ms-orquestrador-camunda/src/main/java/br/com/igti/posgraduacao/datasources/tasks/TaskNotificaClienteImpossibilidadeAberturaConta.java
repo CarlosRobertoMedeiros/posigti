@@ -3,7 +3,6 @@ package br.com.igti.posgraduacao.datasources.tasks;
 import br.com.igti.posgraduacao.config.util.OrquestradorProcessVariables;
 import br.com.igti.posgraduacao.datasources.MensagemDataSource;
 import br.com.igti.posgraduacao.datasources.feign.input.EmailHubInput;
-import br.com.igti.posgraduacao.datasources.feign.output.ClienteOutput;
 import br.com.igti.posgraduacao.datasources.feign.output.EmailHubOutput;
 import br.com.igti.posgraduacao.entities.OrquestradorSolicitarAberturaConta;
 import br.com.igti.posgraduacao.exception.ExceptionUtil;
@@ -21,38 +20,26 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 @Component
-public class TaskNotificaCliente implements JavaDelegate {
-    private static final Logger log = LoggerFactory.getLogger(TaskNotificaCliente.class);
+public class TaskNotificaClienteImpossibilidadeAberturaConta implements JavaDelegate {
+    private static final Logger log = LoggerFactory.getLogger(TaskNotificaClienteImpossibilidadeAberturaConta.class);
     private NotificaClienteRepository notificaClienteRepository;
 
-    public TaskNotificaCliente(NotificaClienteRepository notificaClienteRepository) {
+    public TaskNotificaClienteImpossibilidadeAberturaConta(NotificaClienteRepository notificaClienteRepository) {
         this.notificaClienteRepository = notificaClienteRepository;
     }
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         try {
-            log.info("TaskNotificaCliente - Inicio");
+            log.info("TaskNotificaClienteImpossibilidadeAberturaConta - Inicio");
 
-            Gson g = new Gson();
-            OrquestradorSolicitarAberturaConta osac = g.fromJson(delegateExecution.getVariable(OrquestradorProcessVariables.JSON_REQ_ABERTURA_CONTA).toString(), OrquestradorSolicitarAberturaConta.class);
+            String cpfProspecto  = delegateExecution.getVariable("cpf").toString();
+            String nomeProspecto  = delegateExecution.getVariable("nome").toString();
+            String emailProspecto  = delegateExecution.getVariable("email").toString();
 
-            String agenciaCliente  = g.fromJson(delegateExecution.getVariable("agencia").toString(), String.class);
-            String contaCliente  = g.fromJson(delegateExecution.getVariable("conta").toString(), String.class);
-
-            String cpf = osac.getCpf();
-            String nome = osac.getNome();
-            String endereco = osac.getEndereco();
-            String telefone = osac.getTelefone();
-            String cep = osac.getCep();
-            Double renda = osac.getRenda();
-            Double cartaoDebito = osac.getCartaoDebito();
-            Double emprestimo = osac.getEmprestimo();
-            String email = osac.getEmail();
-
-            String titulo = "BEM VINDO AO BANCO ABC";
-            String conteudoFormatado = String.format("Caro(a) Amigo(a) ... %s é com grande satisfação que te recebemos como cliente do banco. Seu banco é: %s e sua agência é %s",osac.getNome(), agenciaCliente,contaCliente);
-            final EmailHubInput emailHubInput = new EmailHubInput(email,titulo,conteudoFormatado);
+            String titulo = "IMPORTANTE - BANCO ABC";
+            String conteudoFormatado = String.format("Prezado(a) Amigo(a)  %s ... 'Infelizmente' nesse momento não conseguimos realizar a sua abertura de conta, entraremos em contato contigo no futuro, agradecemos a preferência !",nomeProspecto);
+            final EmailHubInput emailHubInput = new EmailHubInput(emailProspecto,titulo,conteudoFormatado);
             EmailHubOutput emailHubOutputData = notificaClienteRepository.enviarEmail(emailHubInput);
 
             if (emailHubOutputData!=null) {
@@ -61,9 +48,9 @@ public class TaskNotificaCliente implements JavaDelegate {
                 delegateExecution.setVariable(OrquestradorProcessVariables.ENVIAR_EMAIL, false);
             }
 
-            log.info("TaskNotificaCliente - Fim");
+            log.info("TaskNotificaClienteImpossibilidadeAberturaConta - Fim");
         } catch (BpmnModelException e) {
-            delegateExecution.setVariable("ERROR_TECNICO_ENVIAR_EMAIL", TaskNotificaCliente.class.getSimpleName() + " - " + e.getMessage());
+            delegateExecution.setVariable("ERROR_TECNICO_ENVIAR_EMAIL", TaskNotificaClienteImpossibilidadeAberturaConta.class.getSimpleName() + " - " + e.getMessage());
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
             throw new BpmnError("ERROR_ENVIAR_EMAIL", "ERROR_ENVIAR_EMAIL", e.getCause());
 

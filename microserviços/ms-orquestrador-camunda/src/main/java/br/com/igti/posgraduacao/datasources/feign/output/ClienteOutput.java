@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class ClienteOutput {
     private String id;
     private String cpf;
-    private String banco;
+    private String agencia;
     private String conta;
     private String nome;
     private String endereco;

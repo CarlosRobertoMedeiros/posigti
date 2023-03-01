@@ -20,7 +20,7 @@ public class Cliente {
     @Id
     private String id;
     private String cpf;
-    private String banco = "001";
+    private String agencia = "001";
     private String conta = UUID.randomUUID().toString();
     private String nome;
     private String endereco;
