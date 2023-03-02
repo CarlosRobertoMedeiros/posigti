@@ -1,11 +1,12 @@
 package br.com.igti.posgraduacao.transportlayer;
 
-import br.com.igti.posgraduacao.entities.OrquestradorSolicitarAberturaConta;
+import br.com.igti.posgraduacao.entities.OrquestradorRespostaSolicitarAberturaConta;
 import br.com.igti.posgraduacao.exception.ExceptionUtil;
 import br.com.igti.posgraduacao.exception.ResourceException;
 import br.com.igti.posgraduacao.interactors.OrquestradorSolicitarAberturaContaUseCase;
 import br.com.igti.posgraduacao.transportlayer.documentacao.openapi.OrquestradorSolicitarAberturaContaController;
 import br.com.igti.posgraduacao.transportlayer.input.OrquestradorSolicitarAberturaContaInput;
+import br.com.igti.posgraduacao.transportlayer.mappers.OrquestradorRespostaSolicitacaoAberturaContaMapper;
 import br.com.igti.posgraduacao.transportlayer.mappers.OrquestradorSolicitacaoAberturaContaMapper;
 import br.com.igti.posgraduacao.transportlayer.output.OrquestradorSolicitarAberturaContaOutput;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,12 @@ public class OrquestradorSolicitarAberturaContaControllerImpl implements Orquest
     @Override
     public ResponseEntity<OrquestradorSolicitarAberturaContaOutput> solicitarAberturaDeConta(OrquestradorSolicitarAberturaContaInput orquestradorSolicitarAberturaContaInput) {
         System.out.println(orquestradorSolicitarAberturaContaInput);
-        OrquestradorSolicitarAberturaConta orquestradorSolicitarAberturaConta = null;
+        OrquestradorRespostaSolicitarAberturaConta orquestradorRespostaSolicitarAberturaConta = null;
         try {
-            orquestradorSolicitarAberturaConta = orquestradorSolicitarAberturaContaUseCase.solicitarAberturaDeConta(OrquestradorSolicitacaoAberturaContaMapper.INSTANCE.map(orquestradorSolicitarAberturaContaInput));
+            orquestradorRespostaSolicitarAberturaConta = orquestradorSolicitarAberturaContaUseCase.solicitarAberturaDeConta(OrquestradorSolicitacaoAberturaContaMapper.INSTANCE.map(orquestradorSolicitarAberturaContaInput));
         }catch (ResourceException e){
             ExceptionUtil.throwException(e);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(OrquestradorSolicitacaoAberturaContaMapper.INSTANCE.mapOutput(orquestradorSolicitarAberturaConta));
+        return ResponseEntity.status(HttpStatus.CREATED).body(OrquestradorRespostaSolicitacaoAberturaContaMapper.INSTANCE.mapOutput(orquestradorRespostaSolicitarAberturaConta));
     }
 }

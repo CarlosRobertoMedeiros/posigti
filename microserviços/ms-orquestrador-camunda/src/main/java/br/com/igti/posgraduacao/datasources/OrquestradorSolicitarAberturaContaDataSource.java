@@ -1,7 +1,9 @@
 package br.com.igti.posgraduacao.datasources;
 
 import br.com.igti.posgraduacao.config.util.EngineUtil;
+import br.com.igti.posgraduacao.entities.OrquestradorRespostaSolicitarAberturaConta;
 import br.com.igti.posgraduacao.entities.OrquestradorSolicitarAberturaConta;
+import br.com.igti.posgraduacao.entities.Process;
 import br.com.igti.posgraduacao.exception.ExceptionUtil;
 import br.com.igti.posgraduacao.exception.ResourceException;
 import br.com.igti.posgraduacao.repositories.OrquestradorSolicitarAberturaContaRepository;
@@ -28,7 +30,7 @@ public class OrquestradorSolicitarAberturaContaDataSource implements Orquestrado
     private static final Logger log = LoggerFactory.getLogger(OrquestradorSolicitarAberturaContaDataSource.class);
 
     @Override
-    public OrquestradorSolicitarAberturaConta solicitarAberturaDeConta(OrquestradorSolicitarAberturaConta orquestradorSolicitarAberturaConta) {
+    public OrquestradorRespostaSolicitarAberturaConta solicitarAberturaDeConta(OrquestradorSolicitarAberturaConta orquestradorSolicitarAberturaConta) {
         final VariableMap variables = Variables.createVariables();
         final ObjectMapper mapper = new ObjectMapper();
         ProcessInstanceWithVariables instance;
@@ -62,8 +64,7 @@ public class OrquestradorSolicitarAberturaContaDataSource implements Orquestrado
 
         return preencheResponse(instance.getProcessInstanceId(),
                                 instance.getVariables().get(BUSSINESS_KEY).toString(),
-                                bussinessKey,
-                                orquestradorSolicitarAberturaConta.getCpf());
+                                orquestradorSolicitarAberturaConta);
     }
 
     private void lancaExceptionEmCasoDeErroNoProcesso(List<Map.Entry<String, Object>> errorList) throws ResourceException {
@@ -81,47 +82,37 @@ public class OrquestradorSolicitarAberturaContaDataSource implements Orquestrado
         }
     }
 
-    private OrquestradorSolicitarAberturaConta preencheResponse(String processInstanceId, Object respostaPreAprovado, String idIdempotente, String cpf) throws ResourceException {
-        //final OrquestradorSolicitarAberturaContaOutput responseDto = new OrquestradorSolicitarAberturaContaOutput();
+    private OrquestradorRespostaSolicitarAberturaConta preencheResponse(String processInstanceId, String bussinessKey, OrquestradorSolicitarAberturaConta orquestradorSolicitarAberturaConta) throws ResourceException {
 
-//        RetornoConsultaLimite retornoConsultaLimite = null;
-//        responseDto.setIdProcesso(processInstanceId);
-//
-//        if(null != respostaPreAprovado) {
-//
-//            responseDto.setIdIdempotente(idIdempotente);
-//            responseDto.setCpf(cpf);
-//            responseDto.setCodSisParceiro(codSisParceiro);
-//
-//            try {
-//                ObjectMapper mapper = new ObjectMapper();
-//                ResponseConsultaLimite responseConsultaLimite = mapper.readValue(String.valueOf(respostaPreAprovado), ResponseConsultaLimite.class);
-//                retornoConsultaLimite = responseConsultaLimite.getResults();
-//                responseDto.setValorMinimoPreAprovado(BigDecimal.valueOf(retornoConsultaLimite.getLimitePreAprovadoDto().get(0).getValorMinimoPreAprovado()));
-//                responseDto.setValorMaximoPreAprovado(BigDecimal.valueOf(retornoConsultaLimite.getLimitePreAprovadoDto().get(0).getValorMaximoPreAprovado()));
-//                responseDto.setDatasPagamentoDto(retornoConsultaLimite.getLimitePreAprovadoDto().get(0).getDatasPagamentoDto());
-//            } catch (JsonMappingException e) {
-//                log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-//                ResourceException resourceException =  ExceptionUtil.generateException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-//                        MensagemDataSource.MessageDataSource.ERRO_JSON_EXCEPTION, e.getMessage(),
-//                        MensagemDataSource.Origem.SERVICE_PRE_APROVADO_QUENTE);
-//                throw resourceException;
-//            } catch (JsonProcessingException e) {
-//                log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-//                ResourceException resourceException =  ExceptionUtil.generateException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-//                        MensagemDataSource.MessageDataSource.ERRO_JSON_EXCEPTION, e.getMessage(),
-//                        MensagemDataSource.Origem.SERVICE_PRE_APROVADO_QUENTE);
-//                throw resourceException;
-//            }
-//        } else {
-//            log.error(MensagemDataSource.Erro.LOG, "Dados não recuperados.", "Dados respostaPreAprovado is null", "Dados respostaPreAprovado is null");
-//            ResourceException resourceException =  ExceptionUtil.generateException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
-//                    MensagemDataSource.MessageDataSource.ERRO_JSON_EXCEPTION, "Dados respostaPreAprovado is null",
-//                    MensagemDataSource.Origem.SERVICE_PRE_APROVADO_QUENTE);
-//            throw resourceException;
-//        }
+        var orquestradorRespostaSolicitarAberturaConta = new OrquestradorRespostaSolicitarAberturaConta();
+        var process = new Process();
 
-        return null;
+        if(null != orquestradorRespostaSolicitarAberturaConta) {
+
+            process.setProcessId(processInstanceId);
+            process.setBussinessKey(bussinessKey);
+
+            try{
+                orquestradorRespostaSolicitarAberturaConta.setProcess(process);
+                orquestradorRespostaSolicitarAberturaConta.setCpf(orquestradorSolicitarAberturaConta.getCpf());
+                orquestradorRespostaSolicitarAberturaConta.setNome(orquestradorSolicitarAberturaConta.getNome());
+                orquestradorRespostaSolicitarAberturaConta.setEndereco(orquestradorSolicitarAberturaConta.getEndereco());
+                orquestradorRespostaSolicitarAberturaConta.setDdd(orquestradorSolicitarAberturaConta.getDdd());
+                orquestradorRespostaSolicitarAberturaConta.setTelefone(orquestradorSolicitarAberturaConta.getTelefone());
+                orquestradorRespostaSolicitarAberturaConta.setEmail(orquestradorSolicitarAberturaConta.getEmail());
+                orquestradorRespostaSolicitarAberturaConta.setCep(orquestradorSolicitarAberturaConta.getCep());
+                orquestradorRespostaSolicitarAberturaConta.setRenda(orquestradorSolicitarAberturaConta.getRenda());
+                orquestradorRespostaSolicitarAberturaConta.setCartaoDebito(orquestradorSolicitarAberturaConta.getCartaoDebito());
+                orquestradorRespostaSolicitarAberturaConta.setEmprestimo(orquestradorSolicitarAberturaConta.getEmprestimo());
+            }catch (Exception e){
+                log.error(MensagemDataSource.Erro.LOG, "Dados não recuperados.", "Dados orquestradorSolicitarAberturaConta is null", "Dados orquestradorSolicitarAberturaConta is null");
+                ResourceException resourceException =  ExceptionUtil.generateException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+                        MensagemDataSource.MessageDataSource.ERRO_JSON_EXCEPTION, "Dados orquestradorSolicitarAberturaConta is null",
+                        MensagemDataSource.Origem.SERVICE_ABERTURA_DE_CONTA);
+                throw resourceException;
+            }
+        }
+        return orquestradorRespostaSolicitarAberturaConta;
     }
 
 

@@ -1,19 +1,17 @@
-package br.com.igti.posgraduacao.transportlayer.output;
+package br.com.igti.posgraduacao.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class OrquestradorSolicitarAberturaContaOutput {
-
-    private ProcessOutput processOutput;
+public class OrquestradorRespostaSolicitarAberturaConta {
+    private Process process;
     private String cpf;
     private String nome;
     private String endereco;

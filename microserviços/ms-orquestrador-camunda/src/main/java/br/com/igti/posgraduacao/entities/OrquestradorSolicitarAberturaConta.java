@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Document(collection = "Col_Email_Enviado")
 public class OrquestradorSolicitarAberturaConta {
     private String cpf;
     private String nome;

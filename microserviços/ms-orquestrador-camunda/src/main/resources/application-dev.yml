@@ -37,6 +37,9 @@ servicos:
   gerente:
     notifica:
       url: http://localhost:8061/service-hub-mensagens/api/v1/
+  prospecto:
+    notifica:
+      url: http://localhost:8061/service-hub-mensagens/api/v1/
 
 
 

@@ -16,31 +16,11 @@
           "value": "false"
         }
       ],
-      "label": "A documentação foi entregue?",
-      "type": "radio",
-      "id": "Field_047eu6c",
-      "key": "rd_documentacaoEntregue",
-      "defaultValue": "Sim",
-      "validate": {
-        "required": true
-      }
-    },
-    {
-      "values": [
-        {
-          "label": "Sim",
-          "value": "true"
-        },
-        {
-          "label": "Não",
-          "value": "false"
-        }
-      ],
-      "label": "A documentação foi aprovada ?",
+      "label": "A documentação foi entregue e aprovada ?",
       "type": "radio",
       "id": "Field_1kvzvlm",
-      "key": "rd_documentacaoAprovada",
-      "defaultValue": "Sim",
+      "key": "rd_documentacaoEntregueAprovada",
+      "defaultValue": "false",
       "validate": {
         "required": true
       }
