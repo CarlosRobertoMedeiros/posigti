@@ -51,7 +51,7 @@ public class TaskConsultarCepProspecto implements JavaDelegate {
         } catch (BpmnModelException e) {
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", TaskConsultarCepProspecto.class.getSimpleName() + " - " + e.getMessage());
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_CEP_PROSPECTO", "ERROR_FRAUDE_CEP_PROSPECTO", e.getCause());
 
         } catch (HttpClientErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
@@ -59,7 +59,7 @@ public class TaskConsultarCepProspecto implements JavaDelegate {
                     MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_CEP, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", jsonException);
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_CEP_PROSPECTO", "ERROR_FRAUDE_CEP_PROSPECTO", e.getCause());
 
         } catch (HttpServerErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
@@ -67,7 +67,7 @@ public class TaskConsultarCepProspecto implements JavaDelegate {
                     MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_CEP, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", jsonException);
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_CEP_PROSPECTO", "ERROR_FRAUDE_CEP_PROSPECTO", e.getCause());
 
         } catch (Exception e) {
             final String jsonException = ExceptionUtil.generateJsonFromException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
@@ -75,7 +75,7 @@ public class TaskConsultarCepProspecto implements JavaDelegate {
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_CEP_PROSPECTO", jsonException);
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_CEP_PROSPECTO", "ERROR_FRAUDE_CEP_PROSPECTO", e.getCause());
         }
     }
 }

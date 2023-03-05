@@ -58,7 +58,7 @@ public class TaskConsultarEmailProspecto implements JavaDelegate {
                     MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_EMAIL, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_EMAIL_PROSPECTO", jsonException);
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_EMAIL_PROSPECTO", "ERROR_FRAUDE_EMAIL_PROSPECTO", e.getCause());
 
         } catch (HttpServerErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
@@ -66,7 +66,7 @@ public class TaskConsultarEmailProspecto implements JavaDelegate {
                     MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_EMAIL, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_EMAIL_PROSPECTO", jsonException);
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_EMAIL_PROSPECTO", "ERROR_FRAUDE_EMAIL_PROSPECTO", e.getCause());
 
         } catch (Exception e) {
             final String jsonException = ExceptionUtil.generateJsonFromException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
@@ -74,7 +74,7 @@ public class TaskConsultarEmailProspecto implements JavaDelegate {
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_EMAIL_PROSPECTO", jsonException);
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_EMAIL_PROSPECTO", "ERROR_FRAUDE_EMAIL_PROSPECTO", e.getCause());
         }
     }
 }

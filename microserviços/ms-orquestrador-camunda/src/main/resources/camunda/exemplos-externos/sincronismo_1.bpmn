@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_18v7255" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.7.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="Process_149b786" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0ruriw3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0ruriw3" sourceRef="StartEvent_1" targetRef="pedidoCliente" />
+    <bpmn:sequenceFlow id="Flow_0gsae93" sourceRef="pedidoCliente" targetRef="preparandoComida" />
+    <bpmn:sequenceFlow id="Flow_1jxryun" sourceRef="preparandoComida" targetRef="cozinhando" />
+    <bpmn:sequenceFlow id="Flow_1bq4flj" sourceRef="cozinhando" targetRef="servirCliente" />
+    <bpmn:endEvent id="Event_05fna7m">
+      <bpmn:incoming>Flow_0uason8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0uason8" sourceRef="servirCliente" targetRef="Event_05fna7m" />
+    <bpmn:userTask id="pedidoCliente" name="pedidoCliente">
+      <bpmn:incoming>Flow_0ruriw3</bpmn:incoming>
+      <bpmn:outgoing>Flow_0gsae93</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="preparandoComida" name="preparandoComida" camunda:expression="${1==1}">
+      <bpmn:incoming>Flow_0gsae93</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jxryun</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="cozinhando" name="cozinhando" camunda:asyncBefore="true" camunda:expression="${1==1}">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="javascript">qualquer coisa
+</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1jxryun</bpmn:incoming>
+      <bpmn:outgoing>Flow_1bq4flj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="servirCliente" name="servirCliente">
+      <bpmn:incoming>Flow_1bq4flj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0uason8</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_149b786">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_05fna7m_di" bpmnElement="Event_05fna7m">
+        <dc:Bounds x="912" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1iv94ou_di" bpmnElement="pedidoCliente">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p87nw5_di" bpmnElement="preparandoComida">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07qmd3o_di" bpmnElement="cozinhando">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0oepoqa_di" bpmnElement="servirCliente">
+        <dc:Bounds x="750" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ruriw3_di" bpmnElement="Flow_0ruriw3">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uason8_di" bpmnElement="Flow_0uason8">
+        <di:waypoint x="850" y="117" />
+        <di:waypoint x="912" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0gsae93_di" bpmnElement="Flow_0gsae93">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jxryun_di" bpmnElement="Flow_1jxryun">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bq4flj_di" bpmnElement="Flow_1bq4flj">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="750" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

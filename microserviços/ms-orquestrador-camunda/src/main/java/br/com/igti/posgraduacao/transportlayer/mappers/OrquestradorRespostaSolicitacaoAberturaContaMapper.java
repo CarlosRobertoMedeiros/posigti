@@ -7,6 +7,7 @@ import br.com.igti.posgraduacao.transportlayer.input.OrquestradorSolicitarAbertu
 import br.com.igti.posgraduacao.transportlayer.output.OrquestradorSolicitarAberturaContaOutput;
 import br.com.igti.posgraduacao.transportlayer.output.ProcessOutput;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public interface OrquestradorRespostaSolicitacaoAberturaContaMapper {
 
     OrquestradorSolicitarAberturaConta map(OrquestradorSolicitarAberturaContaInput orquestradorSolicitarAberturaContaInput);
 
+    @Mapping(source = "process.processId", target = "processOutput.processId")
+    @Mapping(source = "process.bussinessKey", target = "processOutput.bussinessKey")
     OrquestradorSolicitarAberturaContaOutput mapOutput(OrquestradorRespostaSolicitarAberturaConta orquestradorRespostaSolicitarAberturaConta);
     ProcessOutput map(Process process);
     default List<OrquestradorSolicitarAberturaContaOutput> mapListOutput(List<OrquestradorRespostaSolicitarAberturaConta> solicitarRespostaAberturaContas){

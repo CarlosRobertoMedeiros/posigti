@@ -52,7 +52,7 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
         } catch (BpmnModelException e) {
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", TaskConsultarTelefoneProspecto.class.getSimpleName() + " - " + e.getMessage());
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_TELEFONE_PROSPECTO", "ERROR_FRAUDE_TELEFONE_PROSPECTO", e.getCause());
 
         } catch (HttpClientErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
@@ -60,7 +60,7 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
                     MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_TELEFONE, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", jsonException);
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_TELEFONE_PROSPECTO", "ERROR_FRAUDE_TELEFONE_PROSPECTO", e.getCause());
 
         } catch (HttpServerErrorException e) {
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
@@ -68,7 +68,7 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
                     MensagemDataSource.MessageDataSource.ERRO_CONSULTA_FRAUDE_TELEFONE, e.getResponseBodyAsString(),
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", jsonException);
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_TELEFONE_PROSPECTO", "ERROR_FRAUDE_TELEFONE_PROSPECTO", e.getCause());
 
         } catch (Exception e) {
             final String jsonException = ExceptionUtil.generateJsonFromException(HttpStatus.INTERNAL_SERVER_ERROR.toString(),
@@ -76,7 +76,7 @@ public class TaskConsultarTelefoneProspecto implements JavaDelegate {
                     MensagemDataSource.Origem.SERVICE_FRAUDE);
             delegateExecution.setVariable("ERROR_TECNICO_FRAUDE_TELEFONE_PROSPECTO", jsonException);
             log.error(MensagemDataSource.Erro.LOG, e.getMessage(), e.getCause(), e.getStackTrace());
-            throw new BpmnError("ERROR_FRAUDE_PROSPECTO", "ERROR_FRAUDE_PROSPECTO", e.getCause());
+            throw new BpmnError("ERROR_FRAUDE_TELEFONE_PROSPECTO", "ERROR_FRAUDE_TELEFONE_PROSPECTO", e.getCause());
         }
     }
 }
