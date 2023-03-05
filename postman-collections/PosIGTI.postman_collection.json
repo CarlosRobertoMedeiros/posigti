@@ -242,6 +242,468 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "02-CamundaService",
+			"item": [
+				{
+					"name": "01-Abertura de Conta(Caminho Feliz)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"035.268.980-30\",\r\n    \"nome\": \"Ester Lima Bueno\",\r\n    \"endereco\": \"Quadra QBR 4 Bloco L Residencial Santos Dumont (Santa Maria)\",\r\n    \"ddd\": \"61\",\r\n    \"telefone\": \"95874-5214\",\r\n    \"email\": \"carlosmedeiroslima1981@gmail.com\",\r\n    \"cep\": \"72593-062\",\r\n    \"renda\": 3524.15,\r\n    \"cartaoDebito\": 200.10,\r\n    \"emprestimo\": 30.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.1:8011/orquestrador-camunda/api/v1/solicitar-abertura-conta",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"1"
+							],
+							"port": "8011",
+							"path": [
+								"orquestrador-camunda",
+								"api",
+								"v1",
+								"solicitar-abertura-conta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02-Abertura de Conta(Cad Negativo)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"631.753.162-55\",\r\n    \"nome\": \"Caloteira Caloteira de Colote\",\r\n    \"endereco\": \"Quadra SQS 406\",\r\n    \"ddd\": \"61\",\r\n    \"telefone\": \"96845-3431\",\r\n    \"email\": \"carlosmedeiroslima1981@gmail.com\",\r\n    \"cep\": \"72593-062\",\r\n    \"renda\": 980.48,\r\n    \"cartaoDebito\": 500.10,\r\n    \"emprestimo\": 30.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.1:8011/orquestrador-camunda/api/v1/solicitar-abertura-conta",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"1"
+							],
+							"port": "8011",
+							"path": [
+								"orquestrador-camunda",
+								"api",
+								"v1",
+								"solicitar-abertura-conta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03-Abertura de Conta(Doc Pendente)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"631.753.162-55\",\r\n    \"nome\": \"Adriana Pereira Reis\",\r\n    \"endereco\": \"Rua Arlindo Nogueira Centro Teresina PI\",\r\n    \"ddd\": \"86\",\r\n    \"telefone\": \"52265-8880\",\r\n    \"email\": \"carlosmedeiroslima1981@gmail.com\",\r\n    \"cep\": \"64000-290\",\r\n    \"renda\": 1000.00,\r\n    \"cartaoDebito\": 300.00,\r\n    \"emprestimo\": 30.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.1:8011/orquestrador-camunda/api/v1/solicitar-abertura-conta",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"1"
+							],
+							"port": "8011",
+							"path": [
+								"orquestrador-camunda",
+								"api",
+								"v1",
+								"solicitar-abertura-conta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04-Abertura de Conta(CepFraude)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"035.268.980-30\",\r\n    \"nome\": \"Ester Lima Bueno\",\r\n    \"endereco\": \"Quadra QBR 4 Bloco L Residencial Santos Dumont (Santa Maria)\",\r\n    \"ddd\": \"61\",\r\n    \"telefone\": \"95874-5214\",\r\n    \"email\": \"carlosmedeiroslima1981@gmail.com\",\r\n    \"cep\": \"91.550-715\",\r\n    \"renda\": 3524.15,\r\n    \"cartaoDebito\": 200.10,\r\n    \"emprestimo\": 30.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.1:8011/orquestrador-camunda/api/v1/solicitar-abertura-conta",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"1"
+							],
+							"port": "8011",
+							"path": [
+								"orquestrador-camunda",
+								"api",
+								"v1",
+								"solicitar-abertura-conta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03-FraudeService",
+			"item": [
+				{
+					"name": "getEmailStatusCarlosRoberto",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "767515b0-7594-4c8b-badf-c6595dad2740",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "https://api.seon.io/SeonRestService/email-verification/v1.0/paulotrc@gmail.com",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seon",
+								"io"
+							],
+							"path": [
+								"SeonRestService",
+								"email-verification",
+								"v1.0",
+								"paulotrc@gmail.com"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "id",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getEmailStatusCarlosRoberto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "767515b0-7594-4c8b-badf-c6595dad2740",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "https://api.seon.io/SeonRestService/email-verification/v1.0/carlosmedeiroslima@gmail.com",
+									"protocol": "https",
+									"host": [
+										"api",
+										"seon",
+										"io"
+									],
+									"path": [
+										"SeonRestService",
+										"email-verification",
+										"v1.0",
+										"carlosmedeiroslima@gmail.com"
+									],
+									"query": [
+										{
+											"key": "include",
+											"value": "id",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "395"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Feb 2023 01:52:05 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "cceba12f-6020-48e5-83d6-d9c2f9604f5e"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "inline;filename=f.txt"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "f_z6hFJQjoEFagw="
+								},
+								{
+									"key": "Vary",
+									"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "x-amzn-Remapped-Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 08 Feb 2023 01:52:05 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 c46ec2b810f13b2236995a1ba6064ebc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GIG51-P1"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "wh9JZdAmc71r8IxFuZIH_BhcjiU846_XDxHsA-kE5hBgrnCwE4NIxg=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"error\": {},\n    \"data\": {\n        \"valid_format\": true,\n        \"deliverable\": true,\n        \"inbox_full\": false,\n        \"domain_details\": {\n            \"domain\": \"gmail.com\",\n            \"tld\": \".com\",\n            \"registered\": true,\n            \"disposable\": false,\n            \"free\": true,\n            \"custom\": false,\n            \"dmarc_enforced\": true,\n            \"spf_strict\": true,\n            \"valid_mx\": true,\n            \"accept_all\": false,\n            \"suspicious_tld\": false,\n            \"website_exists\": true,\n            \"created\": \"1995-08-13 04:00:00\",\n            \"updated\": \"2022-07-11 09:25:59\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "getEmailStatusCarlosRoberto Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "767515b0-7594-4c8b-badf-c6595dad2740",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost",
+							"host": [
+								"localhost"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "id",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "getEmailStatusCarlosRoberto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "767515b0-7594-4c8b-badf-c6595dad2740",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "localhost",
+									"host": [
+										"localhost"
+									],
+									"query": [
+										{
+											"key": "include",
+											"value": "id",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "395"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Feb 2023 01:52:05 GMT"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "cceba12f-6020-48e5-83d6-d9c2f9604f5e"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Content-Disposition",
+									"value": "inline;filename=f.txt"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "f_z6hFJQjoEFagw="
+								},
+								{
+									"key": "Vary",
+									"value": "Origin,Access-Control-Request-Method,Access-Control-Request-Headers"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "x-amzn-Remapped-Server",
+									"value": "Apache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 08 Feb 2023 01:52:05 GMT"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 c46ec2b810f13b2236995a1ba6064ebc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "GIG51-P1"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "wh9JZdAmc71r8IxFuZIH_BhcjiU846_XDxHsA-kE5hBgrnCwE4NIxg=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"error\": {},\n    \"data\": {\n        \"valid_format\": true,\n        \"deliverable\": true,\n        \"inbox_full\": false,\n        \"domain_details\": {\n            \"domain\": \"gmail.com\",\n            \"tld\": \".com\",\n            \"registered\": true,\n            \"disposable\": false,\n            \"free\": true,\n            \"custom\": false,\n            \"dmarc_enforced\": true,\n            \"spf_strict\": true,\n            \"valid_mx\": true,\n            \"accept_all\": false,\n            \"suspicious_tld\": false,\n            \"website_exists\": true,\n            \"created\": \"1995-08-13 04:00:00\",\n            \"updated\": \"2022-07-11 09:25:59\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
 		}
 	]
 }
